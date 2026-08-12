@@ -1,0 +1,1406 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VINTAGE — Visuals для Minecraft 1.21.11</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&family=Unbounded:wght@400;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+  :root {
+    --bg: #050103;
+    --glass-bg: rgba(255, 255, 255, 0.02);
+    --glass-border: rgba(255, 255, 255, 0.08);
+    --fg: #ffffff;
+    --muted: rgba(255, 255, 255, 0.55);
+    --accent: #ff2d92;
+    --accent-bright: #ff5cad;
+    --accent-glow: rgba(255, 45, 146, 0.4);
+    --magenta: #d946ef;
+    --cyan: #00f0ff;
+  }
+
+  * { box-sizing: border-box; -webkit-font-smoothing: antialiased; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: 'Sora', sans-serif;
+    overflow-x: hidden;
+    position: relative;
+    min-height: 100vh;
+  }
+
+  .font-display { font-family: 'Unbounded', sans-serif; }
+  .font-mono { font-family: 'JetBrains Mono', monospace; }
+
+  /* Жидкий фон */
+  .liquid-bg {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    overflow: hidden;
+    background: 
+      radial-gradient(ellipse at top left, #1a0414 0%, transparent 50%),
+      radial-gradient(ellipse at bottom right, #14001f 0%, transparent 50%),
+      var(--bg);
+  }
+  .blob {
+    position: absolute;
+    border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+    filter: blur(90px);
+    opacity: 0.35;
+    animation: liquid-move 20s ease-in-out infinite;
+  }
+  .blob-1 { width: 600px; height: 600px; background: var(--accent); top: -100px; left: -100px; animation-duration: 18s; }
+  .blob-2 { width: 500px; height: 500px; background: var(--magenta); bottom: 10%; right: -100px; animation-duration: 22s; animation-delay: -5s; }
+  .blob-3 { width: 400px; height: 400px; background: #6b0049; top: 40%; left: 30%; animation-duration: 25s; animation-delay: -10s; opacity: 0.2; }
+
+  @keyframes liquid-move {
+    0%, 100% { border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; transform: translate(0, 0) rotate(0deg) scale(1); }
+    33% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; transform: translate(50px, -30px) rotate(120deg) scale(1.1); }
+    66% { border-radius: 30% 70% 50% 50% / 70% 40% 60% 30%; transform: translate(-30px, 50px) rotate(240deg) scale(0.95); }
+  }
+
+  /* === GLASS MATERIAL === */
+  .liquid-glass {
+    position: relative;
+    background: rgba(10, 5, 8, 0.4);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border-radius: 24px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4), inset 0 1px 1px rgba(255, 255, 255, 0.08), inset 0 -15px 30px rgba(255, 255, 255, 0.03), inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+  }
+
+  .glass-card {
+    position: relative;
+    background: rgba(10,5,8, 0.3);
+    backdrop-filter: blur(30px) saturate(180%);
+    -webkit-backdrop-filter: blur(30px) saturate(180%);
+    border-radius: 32px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), inset 0 1px 1px rgba(255, 255, 255, 0.1), inset 0 -20px 40px rgba(255, 255, 255, 0.04), inset 0 0 0 1px rgba(255, 255, 255, 0.06);
+    transition: box-shadow 0.4s ease;
+    transform-style: preserve-3d;
+    will-change: transform;
+  }
+
+  .glass-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 32px;
+    background: radial-gradient(circle at var(--mx, 50%) var(--my, 50%), rgba(255, 255, 255, 0.12), transparent 40%);
+    opacity: 0;
+    transition: opacity 0.3s;
+    pointer-events: none;
+    mix-blend-mode: overlay;
+    z-index: 2;
+  }
+  .glass-card:hover::before { opacity: 1; }
+  .glass-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 32px;
+    background: linear-gradient(to bottom, rgba(255,255,255,0.03), transparent 30%, transparent 70%, rgba(255,255,255,0.02));
+    pointer-events: none;
+    z-index: 1;
+  }
+  .glass-card > * { position: relative; z-index: 3; }
+
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 999;
+    opacity: 0.02;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  /* Кнопки */
+  .btn-primary {
+    background: linear-gradient(135deg, var(--accent), var(--magenta));
+    color: white; font-weight: 600; padding: 14px 32px; border-radius: 999px;
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); border: none; cursor: pointer;
+    display: inline-flex; align-items: center; gap: 10px; position: relative; overflow: hidden;
+    box-shadow: 0 8px 24px var(--accent-glow), inset 0 1px 1px rgba(255,255,255,0.3), inset 0 -8px 15px rgba(0,0,0,0.2);
+    font-size: 15px;
+  }
+  .btn-primary::before {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(120deg, transparent 30%, rgba(255,255,255,0.4), transparent 70%);
+    transform: translateX(-100%); transition: transform 0.8s;
+  }
+  .btn-primary:hover {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 12px 40px var(--accent-glow), 0 0 60px rgba(217, 70, 239, 0.3), inset 0 1px 1px rgba(255,255,255,0.4), inset 0 -10px 20px rgba(0,0,0,0.25);
+  }
+  .btn-primary:hover::before { transform: translateX(100%); }
+
+  .btn-ghost {
+    background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(20px) saturate(180%);
+    color: var(--fg); font-weight: 500; padding: 14px 30px; border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.08); transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    cursor: pointer; display: inline-flex; align-items: center; gap: 10px; font-size: 15px;
+    box-shadow: inset 0 1px 1px rgba(255,255,255,0.1), inset 0 -10px 20px rgba(255,255,255,0.02);
+  }
+  .btn-ghost:hover {
+    background: rgba(255, 255, 255, 0.05); border-color: rgba(255, 45, 146, 0.4);
+    transform: translateY(-2px) scale(1.02);
+  }
+
+  /* Логотип V */
+  .logo-box {
+    width: 48px; height: 48px; display: flex; align-items: center; justify-content: center;
+    background: rgba(10, 5, 8, 0.4); backdrop-filter: blur(20px) saturate(180%);
+    border-radius: 14px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3), inset 0 1px 1px rgba(255, 255, 255, 0.1), inset 0 -8px 15px rgba(255, 255, 255, 0.03), inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+    position: relative; overflow: hidden;
+  }
+  .logo-v {
+    font-family: 'Unbounded', sans-serif; font-weight: 900; font-size: 26px;
+    background: linear-gradient(to bottom, rgba(255,255,255,0.4), rgba(255,255,255,0.85));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 1px 1px rgba(0,0,0,0.3)); line-height: 1; transform: translateY(-1px);
+  }
+
+  header.scrolled .header-inner {
+    background: rgba(5, 1, 3, 0.6); backdrop-filter: blur(40px) saturate(180%);
+    border-bottom: 1px solid rgba(255,255,255,0.05); box-shadow: inset 0 1px 1px rgba(255,255,255,0.05);
+  }
+  .header-inner { transition: all 0.4s ease; }
+
+  /* STICKY ГОРИЗОНТАЛЬНЫЙ СКРОЛЛ */
+  .sticky-horizontal { height: 280vh; position: relative; }
+  .sticky-horizontal-inner { position: sticky; top: 0; height: 100vh; overflow: hidden; display: flex; align-items: center; }
+  .horizontal-track { display: flex; gap: 40px; padding: 0 8vw; will-change: transform; }
+  .h-card { flex: 0 0 380px; height: 65vh; max-height: 540px; border-radius: 32px; overflow: hidden; position: relative; }
+
+  .carousel-wrap { position: relative; overflow: hidden; cursor: grab; user-select: none; padding: 20px 0; }
+  .carousel-wrap.dragging { cursor: grabbing; }
+  .carousel-track { display: flex; gap: 24px; padding: 0 6vw; will-change: transform; transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+  .carousel-wrap.dragging .carousel-track { transition: none; }
+  .carousel-track > * { flex: 0 0 320px; pointer-events: none; }
+  .carousel-wrap:not(.dragging) .carousel-track > * { pointer-events: auto; }
+
+  .progress-track { height: 4px; background: rgba(255, 255, 255, 0.03); border-radius: 999px; overflow: hidden; position: relative; box-shadow: inset 0 1px 1px rgba(0,0,0,0.2); }
+  .progress-bar { position: absolute; height: 100%; background: linear-gradient(90deg, var(--accent), var(--magenta)); border-radius: 999px; width: 0%; transition: width 0.3s ease; box-shadow: 0 0 15px var(--accent-glow); }
+
+  /* HUD ПРЕВЬЮ */
+  .mini-hud {
+    background: rgba(0, 0, 0, 0.4); backdrop-filter: blur(20px) saturate(180%);
+    border-radius: 16px; padding: 14px 16px; font-family: 'JetBrains Mono', monospace;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.3), inset 0 1px 1px rgba(255,255,255,0.1), inset 0 -8px 15px rgba(255,255,255,0.02), inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+    position: relative; z-index: 10;
+  }
+
+  .hud-preview { aspect-ratio: 4/3; background: linear-gradient(135deg, rgba(255, 45, 146, 0.03), rgba(0, 0, 0, 0)); position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; border-bottom: 1px solid rgba(255, 255, 255, 0.04); }
+
+  .thud { display: flex; align-items: center; gap: 12px; }
+  .thud-avatar { width: 40px; height: 40px; background: linear-gradient(135deg, var(--accent), var(--magenta)); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 14px; box-shadow: 0 4px 12px var(--accent-glow), inset 0 1px 1px rgba(255,255,255,0.2); }
+  .thud-info { flex: 1; min-width: 0; }
+  .thud-name { color: white; font-size: 12px; font-weight: 600; margin-bottom: 4px; }
+  .thud-bar { height: 6px; background: rgba(255,255,255,0.08); border-radius: 999px; overflow: hidden; box-shadow: inset 0 1px 1px rgba(0,0,0,0.3); }
+  .thud-bar-fill { height: 100%; background: linear-gradient(90deg, var(--accent), var(--accent-bright)); border-radius: 999px; box-shadow: 0 0 10px var(--accent-glow); }
+  .thud-hp { color: var(--accent-bright); font-size: 10px; margin-top: 4px; }
+
+  .keys { display: grid; grid-template-columns: repeat(3, 32px); gap: 4px; justify-content: center; }
+  .key { height: 32px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; color: rgba(255,255,255,0.6); transition: all 0.15s; box-shadow: inset 0 1px 1px rgba(255,255,255,0.05); }
+  .key.active { background: linear-gradient(135deg, var(--accent), var(--magenta)); border-color: transparent; color: white; box-shadow: 0 4px 16px var(--accent-glow), inset 0 1px 1px rgba(255,255,255,0.2); transform: scale(0.95); }
+  .key.empty { background: transparent; border: none; box-shadow: none; }
+
+  .armor-slots { display: flex; gap: 8px; justify-content: center; }
+  .armor-slot { width: 36px; height: 36px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; display: flex; flex-direction: column; align-items: center; justify-content: center; box-shadow: inset 0 1px 1px rgba(255,255,255,0.05); }
+  .armor-slot i { color: var(--accent-bright); font-size: 12px; }
+  .armor-slot .durab { font-size: 9px; color: rgba(255,255,255,0.5); margin-top: 2px; }
+
+  .fps-display { text-align: center; }
+  .fps-num { font-family: 'Sora', sans-serif; font-weight: 800; font-size: 32px; background: linear-gradient(135deg, var(--accent), var(--magenta)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; line-height: 1; }
+  .fps-label { font-size: 9px; color: rgba(255,255,255,0.5); letter-spacing: 0.2em; margin-top: 4px; }
+  .fps-graph { display: flex; align-items: flex-end; gap: 3px; height: 24px; margin-top: 8px; justify-content: center; }
+  .fps-bar { width: 4px; background: var(--accent); border-radius: 999px; opacity: 0.7; }
+
+  .combo-display { text-align: center; }
+  .combo-num { font-family: 'Sora', sans-serif; font-weight: 800; font-size: 40px; background: linear-gradient(135deg, var(--accent), var(--magenta)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; line-height: 1; }
+  .combo-label { font-size: 10px; color: rgba(255,255,255,0.5); letter-spacing: 0.15em; margin-top: 4px; }
+
+  .coords { font-size: 11px; line-height: 1.8; text-align: center; }
+  .coords .label { color: rgba(255,255,255,0.4); }
+  .coords .val { color: var(--accent-bright); font-weight: 600; }
+
+  .badge { position: absolute; top: 16px; right: 16px; padding: 6px 12px; font-size: 10px; font-weight: 600; letter-spacing: 0.05em; border-radius: 999px; font-family: 'JetBrains Mono', monospace; z-index: 3; backdrop-filter: blur(10px); }
+  .badge-hot { background: var(--accent); color: white; box-shadow: 0 4px 12px var(--accent-glow), inset 0 1px 1px rgba(255,255,255,0.2); }
+  .badge-new { background: rgba(255, 255, 255, 0.08); color: var(--cyan); border: 1px solid rgba(0, 240, 255, 0.2); box-shadow: inset 0 1px 1px rgba(255,255,255,0.1); }
+
+  .pack-tag { display: inline-flex; padding: 6px 12px; background: rgba(0, 0, 0, 0.3); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 999px; font-size: 10px; font-weight: 600; letter-spacing: 0.05em; color: var(--accent-bright); font-family: 'JetBrains Mono', monospace; box-shadow: inset 0 1px 1px rgba(255,255,255,0.05); }
+
+  /* FAQ */
+  .faq-item { background: rgba(10, 5, 8, 0.3); backdrop-filter: blur(30px) saturate(180%); border-radius: 24px; overflow: hidden; transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); box-shadow: inset 0 1px 1px rgba(255,255,255,0.15), inset 0 -10px 20px rgba(255,255,255,0.01), inset 0 0 0 1px rgba(255,255,255,0.04); }
+  .faq-item.open { background: rgba(255, 45, 146, 0.03); box-shadow: inset 0 1px 1px rgba(255,255,255,0.2), inset 0 -15px 30px rgba(255,45,146,0.05), inset 0 0 0 1px rgba(255,45,146,0.15); }
+  .faq-q { width: 100%; padding: 24px 28px; background: transparent; border: none; color: var(--fg); font-family: 'Sora', sans-serif; font-weight: 600; font-size: 17px; text-align: left; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+  .faq-q i { transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1); color: var(--accent); font-size: 18px; }
+  .faq-item.open .faq-q i { transform: rotate(45deg); }
+  .faq-a { max-height: 0; overflow: hidden; transition: max-height 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
+  .faq-a-inner { padding: 0 28px 24px; color: var(--muted); line-height: 1.7; font-size: 15px; }
+
+  /* Toast */
+  .toast { position: fixed; bottom: 30px; left: 50%; transform: translate(-50%, 120%) scale(0.9); padding: 16px 24px; background: rgba(20, 5, 15, 0.6); backdrop-filter: blur(40px) saturate(180%); border: 1px solid rgba(255, 45, 146, 0.2); border-radius: 999px; color: var(--fg); font-size: 14px; font-weight: 500; display: flex; align-items: center; gap: 12px; z-index: 1000; transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1); box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 40px var(--accent-glow), inset 0 1px 1px rgba(255,255,255,0.15); max-width: 90vw; }
+  .toast.show { transform: translate(-50%, 0) scale(1); }
+  .toast i { color: var(--accent-bright); font-size: 18px; }
+
+  .reveal { opacity: 0; transform: translateY(50px) scale(0.95); transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.34, 1.56, 0.64, 1); }
+  .reveal.visible { opacity: 1; transform: translateY(0) scale(1); }
+  .reveal-delay-1 { transition-delay: 0.1s; } .reveal-delay-2 { transition-delay: 0.2s; } .reveal-delay-3 { transition-delay: 0.3s; }
+
+  ::-webkit-scrollbar { width: 6px; } ::-webkit-scrollbar-track { background: transparent; } ::-webkit-scrollbar-thumb { background: rgba(255, 45, 146, 0.3); border-radius: 999px; } ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+
+  @keyframes key-press { 0%, 70%, 100% { transform: scale(1); background: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.08); color: rgba(255,255,255,0.6); box-shadow: inset 0 1px 1px rgba(255,255,255,0.05); } 10%, 50% { transform: scale(0.92); background: linear-gradient(135deg, var(--accent), var(--magenta)); border-color: transparent; color: white; box-shadow: 0 4px 16px var(--accent-glow), inset 0 1px 1px rgba(255,255,255,0.2); } }
+  .demo-key-w { animation: key-press 2.4s infinite; } .demo-key-a { animation: key-press 2.4s 0.3s infinite; } .demo-key-s { animation: key-press 2.4s 0.6s infinite; } .demo-key-d { animation: key-press 2.4s 0.9s infinite; }
+
+  @keyframes fps-rise { 0%, 100% { height: 30%; } 50% { height: 90%; } }
+  .fps-bar-demo { animation: fps-rise 1.4s ease-in-out infinite; }
+
+  @keyframes pulse-dot { 0%, 100% { transform: scale(1); opacity: 1; box-shadow: 0 0 0 0 var(--accent-glow); } 50% { transform: scale(1.2); opacity: 0.8; box-shadow: 0 0 0 8px transparent; } }
+  .pulse-dot { animation: pulse-dot 2s ease-in-out infinite; }
+
+  .text-gradient { background: linear-gradient(135deg, var(--accent) 0%, var(--magenta) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+
+  .nav-arrow { width: 52px; height: 52px; border-radius: 50%; background: rgba(10, 5, 8, 0.4); backdrop-filter: blur(20px) saturate(180%); border: 1px solid rgba(255, 255, 255, 0.08); color: var(--fg); display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); box-shadow: inset 0 1px 1px rgba(255,255,255,0.1), inset 0 -8px 15px rgba(255,255,255,0.02); }
+  .nav-arrow:hover { background: linear-gradient(135deg, var(--accent), var(--magenta)); border-color: transparent; transform: scale(1.1); box-shadow: 0 8px 24px var(--accent-glow), inset 0 1px 1px rgba(255,255,255,0.2); }
+  .nav-arrow:disabled { opacity: 0.3; cursor: not-allowed; }
+
+  /* DRAGGABLE HUD */
+  .draggable-hud {
+    cursor: grab;
+    user-select: none;
+    touch-action: none;
+  }
+  .draggable-hud:active {
+    cursor: grabbing;
+  }
+
+  /* COMPARE SLIDER */
+  .compare-slider {
+    position: relative;
+    aspect-ratio: 16/9;
+    border-radius: 32px;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.08);
+    user-select: none;
+    cursor: ew-resize;
+  }
+  .compare-slider img {
+    pointer-events: none;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .compare-before {
+    position: absolute;
+    top: 0; left: 0;
+    width: 50%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 2;
+  }
+  .compare-before img {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100vw;
+    max-width: none;
+    height: 100%;
+  }
+  .compare-handle {
+    position: absolute;
+    top: 0; bottom: 0;
+    left: 50%;
+    width: 3px;
+    background: var(--accent);
+    z-index: 3;
+    transform: translateX(-50%);
+    box-shadow: 0 0 20px var(--accent-glow);
+  }
+  .compare-knob {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 52px; height: 52px;
+    background: var(--accent);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 18px;
+    box-shadow: 0 0 30px var(--accent-glow), inset 0 1px 1px rgba(255,255,255,0.3);
+  }
+
+  @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; } }
+  @media (max-width: 768px) { .h-card { flex: 0 0 280px; height: 60vh; } .carousel-track > * { flex: 0 0 260px; } }
+</style>
+</head>
+<body>
+
+<div class="liquid-bg">
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="blob blob-3"></div>
+</div>
+
+<!-- Header -->
+<header class="fixed top-0 left-0 right-0 z-50">
+  <div class="header-inner max-w-7xl mx-auto px-6 py-4 flex items-center justify-between rounded-b-3xl">
+    <a href="#" class="flex items-center gap-3 group">
+      <div class="logo-box">
+        <span class="logo-v">V</span>
+      </div>
+      <div>
+        <div class="font-bold text-lg tracking-tight leading-none">VINTAGE</div>
+        <div class="font-mono text-[10px] text-[var(--muted)] mt-0.5">v4.0 · VISUALS</div>
+      </div>
+    </a>
+    <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-[var(--muted)]">
+      <a href="#showcase" class="hover:text-white transition">Витрина</a>
+      <a href="#explore" class="hover:text-white transition">Каталог</a>
+      <a href="#compare" class="hover:text-white transition">Сравнение</a>
+      <a href="#install" class="hover:text-white transition">Установка</a>
+      <a href="#faq" class="hover:text-white transition">FAQ</a>
+    </nav>
+    <button class="btn-primary text-sm hidden md:flex" onclick="showToast('VINTAGE Launcher скоро откроется!')">
+      <i class="fas fa-download text-xs"></i>
+      Скачать клиент
+    </button>
+    <button class="md:hidden w-10 h-10 rounded-full liquid-glass flex items-center justify-center">
+      <i class="fas fa-bars"></i>
+    </button>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="relative min-h-screen pt-32 overflow-hidden flex items-center">
+  <div class="relative z-10 max-w-7xl mx-auto px-6 py-12 w-full">
+    <div class="grid lg:grid-cols-12 gap-12 items-center">
+      <div class="lg:col-span-7">
+        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full liquid-glass mb-8">
+          <span class="relative flex h-2 w-2">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[var(--accent)] opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-2 w-2 bg-[var(--accent)]"></span>
+          </span>
+          <span class="text-xs font-mono">Эксклюзивно для Minecraft 1.21.11</span>
+        </div>
+
+        <h1 class="font-bold text-5xl sm:text-6xl lg:text-7xl xl:text-8xl leading-[0.95] tracking-tight mb-7">
+          HUD, который<br>
+          <span class="text-gradient">течёт</span> вместе<br>
+          с твоей игрой
+        </h1>
+
+        <p class="text-lg text-[var(--muted)] max-w-xl mb-10 leading-relaxed">
+          Студия интерфейсов для Minecraft 1.21.11. TargetHUD, Keystrokes, Combo Counter и 40+ модулей. Чистая косметика без читов — легально на любом сервере.
+        </p>
+
+        <div class="flex flex-wrap gap-4 mb-14">
+          <button class="btn-primary" onclick="document.getElementById('showcase').scrollIntoView({behavior:'smooth'})">
+            <i class="fas fa-eye"></i>
+            Смотреть витрину
+          </button>
+          <button class="btn-ghost" onclick="document.getElementById('explore').scrollIntoView({behavior:'smooth'})">
+            <i class="fas fa-grip"></i>
+            Открыть каталог
+          </button>
+        </div>
+
+        <div class="grid grid-cols-3 gap-6 max-w-lg">
+          <div>
+            <div class="font-bold text-3xl lg:text-4xl text-gradient" data-counter="42">0</div>
+            <div class="text-xs text-[var(--muted)] mt-1 font-mono uppercase tracking-wider">модулей</div>
+          </div>
+          <div>
+            <div class="font-bold text-3xl lg:text-4xl text-gradient" data-counter="870000" data-suffix="+">0</div>
+            <div class="text-xs text-[var(--muted)] mt-1 font-mono uppercase tracking-wider">игроков</div>
+          </div>
+          <div>
+            <div class="font-bold text-3xl lg:text-4xl text-gradient" data-counter="100" data-suffix="%">0</div>
+            <div class="text-xs text-[var(--muted)] mt-1 font-mono uppercase tracking-wider">легально</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hero визуал с перетаскиваемыми HUD -->
+      <div class="lg:col-span-5 relative">
+        <div class="relative aspect-[4/5] rounded-[32px] overflow-hidden glass-card group" style="background: linear-gradient(135deg, #1a0414, #14001f);">
+          
+          <!-- Подсказка -->
+          <div class="absolute top-5 left-5 z-30 pack-tag" style="background: rgba(255, 45, 146, 0.2); color: white; border-color: var(--accent);">
+            <i class="fas fa-hand-pointer mr-1.5"></i> Тащи мышкой
+          </div>
+
+          <div class="absolute top-5 right-5 z-30 badge" style="background: var(--accent); color: white; box-shadow: 0 4px 12px var(--accent-glow), inset 0 1px 1px rgba(255,255,255,0.2);">LIVE PREVIEW</div>
+
+          <!-- Перетаскиваемые HUD элементы -->
+          <div class="mini-hud draggable-hud" style="position: absolute; top: 80px; left: 30px; width: 220px;">
+            <div class="thud">
+              <div class="thud-avatar">S</div>
+              <div class="thud-info">
+                <div class="thud-name">Steve_Player</div>
+                <div class="thud-bar"><div class="thud-bar-fill" style="width: 72%;"></div></div>
+                <div class="thud-hp">14.4 / 20 HP</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="mini-hud draggable-hud" style="position: absolute; top: 60%; left: 30px; width: 100px; padding: 12px;">
+            <div class="combo-display">
+              <div class="combo-num">7</div>
+              <div class="combo-label">COMBO</div>
+            </div>
+          </div>
+
+          <div class="mini-hud draggable-hud" style="position: absolute; top: 60%; right: 30px; width: 90px; padding: 12px;">
+            <div class="fps-display">
+              <div class="fps-num" style="font-size: 24px;">312</div>
+              <div class="fps-label">FPS</div>
+            </div>
+          </div>
+
+          <div class="mini-hud draggable-hud" style="position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%); width: 130px; padding: 12px;">
+            <div class="keys">
+              <div class="key empty"></div>
+              <div class="key demo-key-w">W</div>
+              <div class="key empty"></div>
+              <div class="key demo-key-a">A</div>
+              <div class="key demo-key-s">S</div>
+              <div class="key demo-key-d">D</div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="absolute -top-4 -left-4 liquid-glass rounded-2xl px-4 py-3">
+          <div class="flex items-center gap-2">
+            <div class="w-2 h-2 bg-[var(--accent)] rounded-full pulse-dot"></div>
+            <span class="text-xs font-mono">RECORDING · 240 FPS</span>
+          </div>
+        </div>
+        <div class="absolute -bottom-4 -right-4 liquid-glass rounded-2xl px-4 py-3">
+          <div class="text-xs text-[var(--muted)] font-mono">VERSION</div>
+          <div class="font-bold text-lg text-[var(--accent-bright)]">1.21.11</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STICKY HORIZONTAL SCROLL -->
+<section id="showcase" class="sticky-horizontal">
+  <div class="sticky-horizontal-inner">
+    <div class="absolute top-0 left-0 right-0 z-10 pt-24 px-8 pointer-events-none">
+      <div class="max-w-7xl mx-auto flex items-end justify-between">
+        <div>
+          <div class="text-xs font-mono text-[var(--accent-bright)] mb-3 tracking-widest">// ВИТРИНА — ЛИСТАЙ ВНИЗ</div>
+          <h2 class="font-bold text-4xl md:text-5xl lg:text-6xl leading-[0.95]">
+            42 модуля.<br><span class="text-gradient">Один стиль.</span>
+          </h2>
+        </div>
+        <div class="hidden md:block text-right">
+          <div class="text-xs font-mono text-[var(--muted)]">СКРОЛЛ</div>
+          <div class="text-xs font-mono text-[var(--muted)]">→ → →</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="horizontal-track" id="hTrack"></div>
+
+    <div class="absolute bottom-8 left-8 right-8 z-10 flex items-center gap-4 max-w-7xl mx-auto">
+      <div class="flex-1 progress-track">
+        <div class="progress-bar" id="hProgress"></div>
+      </div>
+      <div class="font-mono text-xs text-[var(--muted)]">
+        <span id="hCurrent">01</span> / <span id="hTotal">08</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPARE SLIDER -->
+<section id="compare" class="relative py-24 lg:py-32">
+  <div class="max-w-5xl mx-auto px-6">
+    <div class="text-center mb-14 reveal">
+      <div class="text-xs font-mono text-[var(--accent-bright)] mb-3 tracking-widest">// СРАВНЕНИЕ</div>
+      <h2 class="font-bold text-4xl md:text-5xl lg:text-6xl leading-[0.95] mb-5">
+        Vanilla vs <span class="text-gradient">Vintage</span>
+      </h2>
+      <p class="text-[var(--muted)] max-w-2xl mx-auto text-lg">Перетащи ползунок и увидь разницу</p>
+    </div>
+
+    <div class="compare-slider reveal reveal-delay-1" id="compareSlider">
+      <!-- ЗАМЕНИ ЭТИ КАРТИНКИ НА СВОИ (Vintage справа) -->
+      <img src="https://picsum.photos/seed/vintage-after/1600/900.jpg" alt="Vintage Visuals">
+      <div class="compare-before" id="compareBefore">
+         <!-- ЗАМЕНИ ЭТУ КАРТИНКУ НА СВОЮ (Vanilla слева) -->
+        <img src="https://picsum.photos/seed/vanilla-before/1600/900.jpg" alt="Vanilla Minecraft">
+      </div>
+      <div class="compare-handle" id="compareHandle">
+        <div class="compare-knob">
+          <i class="fas fa-arrows-left-right"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DRAG CAROUSEL -->
+<section id="explore" class="relative py-24 lg:py-32">
+  <div class="max-w-7xl mx-auto px-6 mb-12">
+    <div class="flex flex-wrap items-end justify-between gap-6 reveal">
+      <div>
+        <div class="text-xs font-mono text-[var(--accent-bright)] mb-3 tracking-widest">// КАТАЛОГ</div>
+        <h2 class="font-bold text-4xl md:text-5xl lg:text-6xl leading-[0.95]">
+          Перетаскивай.<br><span class="text-gradient">Изучай.</span>
+        </h2>
+      </div>
+      <div class="flex items-center gap-3">
+        <button class="nav-arrow" id="carouselPrev" aria-label="Назад">
+          <i class="fas fa-arrow-left"></i>
+        </button>
+        <button class="nav-arrow" id="carouselNext" aria-label="Вперёд">
+          <i class="fas fa-arrow-right"></i>
+        </button>
+      </div>
+    </div>
+    <p class="text-[var(--muted)] mt-4 max-w-xl reveal reveal-delay-1">
+      Зажми и тяни мышкой. Наведи на карточку — она наклонится, подстраиваясь под свет.
+    </p>
+  </div>
+
+  <div class="carousel-wrap reveal reveal-delay-2" id="carousel">
+    <div class="carousel-track" id="carouselTrack"></div>
+  </div>
+
+  <div class="max-w-7xl mx-auto px-6 mt-10">
+    <div class="progress-track">
+      <div class="progress-bar" id="carouselProgress"></div>
+    </div>
+  </div>
+</section>
+
+<!-- CATEGORIES -->
+<section id="categories" class="relative py-24 lg:py-32">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="flex flex-wrap items-end justify-between gap-6 mb-14 reveal">
+      <div>
+        <div class="text-xs font-mono text-[var(--accent-bright)] mb-3 tracking-widest">// МОДУЛИ</div>
+        <h2 class="font-bold text-4xl md:text-5xl lg:text-6xl leading-[0.95]">
+          Категории<br><span class="text-gradient">визуалов</span>
+        </h2>
+      </div>
+      <p class="text-[var(--muted)] max-w-sm">
+        HUD, индикаторы, виджеты, оверлеи — всё, что делает интерфейс ближе к турнирному.
+      </p>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="glass-card tilt-card p-7 reveal">
+        <div class="w-12 h-12 rounded-2xl flex items-center justify-center mb-5" style="background: rgba(255, 45, 146, 0.1); border: 1px solid rgba(255, 45, 146, 0.2);">
+          <i class="fas fa-crosshairs text-[var(--accent-bright)] text-xl"></i>
+        </div>
+        <h3 class="font-bold text-xl mb-2">Combat HUD</h3>
+        <p class="text-sm text-[var(--muted)] mb-4 leading-relaxed">TargetHUD, Reach Display, Combo Counter, Kill Effect. Вся боевая инфа в одном стиле.</p>
+        <div class="flex items-center justify-between text-xs font-mono">
+          <span class="text-[var(--muted)]">8 модулей</span>
+          <span class="text-[var(--accent-bright)]">Входит в клиент →</span>
+        </div>
+      </div>
+
+      <div class="glass-card tilt-card p-7 reveal reveal-delay-1">
+        <div class="w-12 h-12 rounded-2xl flex items-center justify-center mb-5" style="background: rgba(255, 45, 146, 0.1); border: 1px solid rgba(255, 45, 146, 0.2);">
+          <i class="fas fa-keyboard text-[var(--accent-bright)] text-xl"></i>
+        </div>
+        <h3 class="font-bold text-xl mb-2">Input Display</h3>
+        <p class="text-sm text-[var(--muted)] mb-4 leading-relaxed">Keystrokes WASD, Mouse Buttons, CPS Counter, L-Click/R-Click индикаторы.</p>
+        <div class="flex items-center justify-between text-xs font-mono">
+          <span class="text-[var(--muted)]">6 модулей</span>
+          <span class="text-[var(--accent-bright)]">Входит в клиент →</span>
+        </div>
+      </div>
+
+      <div class="glass-card tilt-card p-7 reveal reveal-delay-2">
+        <div class="w-12 h-12 rounded-2xl flex items-center justify-center mb-5" style="background: rgba(255, 45, 146, 0.1); border: 1px solid rgba(255, 45, 146, 0.2);">
+          <i class="fas fa-heart text-[var(--accent-bright)] text-xl"></i>
+        </div>
+        <h3 class="font-bold text-xl mb-2">Status HUD</h3>
+        <p class="text-sm text-[var(--muted)] mb-4 leading-relaxed">Armor Status, Potion Effects, Hunger/Health Bar, Saturation Display.</p>
+        <div class="flex items-center justify-between text-xs font-mono">
+          <span class="text-[var(--muted)]">7 модулей</span>
+          <span class="text-[var(--accent-bright)]">Входит в клиент →</span>
+        </div>
+      </div>
+
+      <div class="glass-card tilt-card p-7 reveal">
+        <div class="w-12 h-12 rounded-2xl flex items-center justify-center mb-5" style="background: rgba(255, 45, 146, 0.1); border: 1px solid rgba(255, 45, 146, 0.2);">
+          <i class="fas fa-chart-line text-[var(--accent-bright)] text-xl"></i>
+        </div>
+        <h3 class="font-bold text-xl mb-2">Performance</h3>
+        <p class="text-sm text-[var(--muted)] mb-4 leading-relaxed">FPS Counter, Ping Display, RAM Usage, TPS Indicator, Frame Graph.</p>
+        <div class="flex items-center justify-between text-xs font-mono">
+          <span class="text-[var(--muted)]">5 модулей</span>
+          <span class="text-[var(--accent-bright)]">Входит в клиент →</span>
+        </div>
+      </div>
+
+      <div class="glass-card tilt-card p-7 reveal reveal-delay-1">
+        <div class="w-12 h-12 rounded-2xl flex items-center justify-center mb-5" style="background: rgba(255, 45, 146, 0.1); border: 1px solid rgba(255, 45, 146, 0.2);">
+          <i class="fas fa-location-arrow text-[var(--accent-bright)] text-xl"></i>
+        </div>
+        <h3 class="font-bold text-xl mb-2">World Info</h3>
+        <p class="text-sm text-[var(--muted)] mb-4 leading-relaxed">Coordinates, Biome Display, Compass, Time HUD, Direction Indicator.</p>
+        <div class="flex items-center justify-between text-xs font-mono">
+          <span class="text-[var(--muted)]">6 модулей</span>
+          <span class="text-[var(--accent-bright)]">Входит в клиент →</span>
+        </div>
+      </div>
+
+      <div class="glass-card tilt-card p-7 reveal reveal-delay-2">
+        <div class="w-12 h-12 rounded-2xl flex items-center justify-center mb-5" style="background: rgba(255, 45, 146, 0.1); border: 1px solid rgba(255, 45, 146, 0.2);">
+          <i class="fas fa-palette text-[var(--accent-bright)] text-xl"></i>
+        </div>
+        <h3 class="font-bold text-xl mb-2">Customize</h3>
+        <p class="text-sm text-[var(--muted)] mb-4 leading-relaxed">Color Themes, Fonts, Animations, Positioning, Scale, Blur Backgrounds.</p>
+        <div class="flex items-center justify-between text-xs font-mono">
+          <span class="text-[var(--muted)]">10 модулей</span>
+          <span class="text-[var(--accent-bright)]">Входит в клиент →</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRESETS -->
+<section class="relative py-24 lg:py-32">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="text-center mb-16 reveal">
+      <div class="text-xs font-mono text-[var(--accent-bright)] mb-3 tracking-widest">// ПРЕСЕТЫ</div>
+      <h2 class="font-bold text-4xl md:text-5xl lg:text-6xl leading-[0.95] mb-5">
+        Готовые <span class="text-gradient">сборки</span>
+      </h2>
+      <p class="text-[var(--muted)] max-w-2xl mx-auto text-lg">Один клик — и весь комплект установлен. Подобрано дизайнерами VINTAGE.</p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-6">
+      <div class="glass-card tilt-card overflow-hidden reveal">
+        <div class="hud-preview">
+          <div class="mini-hud" style="width: 70%;">
+            <div class="thud">
+              <div class="thud-avatar">P</div>
+              <div class="thud-info">
+                <div class="thud-name">PvP Master</div>
+                <div class="thud-bar"><div class="thud-bar-fill" style="width: 85%;"></div></div>
+                <div class="thud-hp">17.0 / 20 HP</div>
+              </div>
+            </div>
+          </div>
+          <span class="badge badge-hot">HOT</span>
+        </div>
+        <div class="p-6">
+          <h3 class="font-bold text-lg mb-1">PvP Master</h3>
+          <p class="text-xs text-[var(--muted)] mb-4">TargetHUD, Keystrokes, Combo, Reach, Potions. Всё для Fights серверов.</p>
+          <div class="flex items-center justify-between pt-3 border-t border-white/5">
+            <span class="font-mono text-xs text-[var(--muted)]">14 модулей · 2.1 MB</span>
+            <span class="text-xs text-[var(--accent-bright)] font-mono">Входит в клиент</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="glass-card tilt-card overflow-hidden reveal reveal-delay-1">
+        <div class="hud-preview">
+          <div class="mini-hud" style="width: 60%; padding: 16px;">
+            <div class="fps-display">
+              <div class="fps-num" style="font-size: 36px;">312</div>
+              <div class="fps-label">FPS · ULTRA</div>
+              <div class="fps-graph" style="margin-top: 12px;">
+                <div class="fps-bar fps-bar-demo" style="height: 60%;"></div>
+                <div class="fps-bar fps-bar-demo" style="height: 80%; animation-delay: 0.1s;"></div>
+                <div class="fps-bar fps-bar-demo" style="height: 45%; animation-delay: 0.2s;"></div>
+                <div class="fps-bar fps-bar-demo" style="height: 90%; animation-delay: 0.3s;"></div>
+                <div class="fps-bar fps-bar-demo" style="height: 70%; animation-delay: 0.4s;"></div>
+                <div class="fps-bar fps-bar-demo" style="height: 55%; animation-delay: 0.5s;"></div>
+                <div class="fps-bar fps-bar-demo" style="height: 85%; animation-delay: 0.6s;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="p-6">
+          <h3 class="font-bold text-lg mb-1">Minimal Pro</h3>
+          <p class="text-xs text-[var(--muted)] mb-4">FPS, Coordinates, Ping, Armor. Минимализм для слабых ПК и стримеров.</p>
+          <div class="flex items-center justify-between pt-3 border-t border-white/5">
+            <span class="font-mono text-xs text-[var(--muted)]">6 модулей · 0.8 MB</span>
+            <span class="text-xs text-[var(--accent-bright)] font-mono">Входит в клиент</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="glass-card tilt-card overflow-hidden reveal reveal-delay-2">
+        <div class="hud-preview">
+          <div class="mini-hud" style="width: 80%; padding: 14px;">
+            <div class="coords">
+              <div><span class="label">X</span> <span class="val">-1248</span> &nbsp; <span class="label">Y</span> <span class="val">71</span> &nbsp; <span class="label">Z</span> <span class="val">4521</span></div>
+              <div style="margin-top: 6px;"><span class="label">BIOME</span> <span class="val">Plains</span> &nbsp; <span class="label">TIME</span> <span class="val">06:42</span></div>
+              <div style="margin-top: 10px; display: flex; justify-content: center; gap: 6px;">
+                <div style="width: 32px; height: 32px; background: rgba(255,45,146,0.15); border: 1px solid rgba(255,45,146,0.3); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: var(--accent-bright);"><i class="fas fa-shield-alt" style="font-size: 11px;"></i></div>
+                <div style="width: 32px; height: 32px; background: rgba(255,45,146,0.15); border: 1px solid rgba(255,45,146,0.3); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: var(--accent-bright);"><i class="fas fa-shield-alt" style="font-size: 11px;"></i></div>
+                <div style="width: 32px; height: 32px; background: rgba(255,45,146,0.15); border: 1px solid rgba(255,45,146,0.3); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: var(--accent-bright);"><i class="fas fa-shield-alt" style="font-size: 11px;"></i></div>
+                <div style="width: 32px; height: 32px; background: rgba(255,45,146,0.15); border: 1px solid rgba(255,45,146,0.3); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: var(--accent-bright);"><i class="fas fa-shoe-prints" style="font-size: 11px;"></i></div>
+              </div>
+            </div>
+          </div>
+          <span class="badge badge-new">NEW</span>
+        </div>
+        <div class="p-6">
+          <h3 class="font-bold text-lg mb-1">Survival Full</h3>
+          <p class="text-xs text-[var(--muted)] mb-4">Coords, Biome, Armor, Potions, Saturation. Полный набор для выживания.</p>
+          <div class="flex items-center justify-between pt-3 border-t border-white/5">
+            <span class="font-mono text-xs text-[var(--muted)]">18 модулей · 3.4 MB</span>
+            <span class="text-xs text-[var(--accent-bright)] font-mono">Входит в клиент</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INSTALL -->
+<section id="install" class="relative py-24 lg:py-32">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="text-center mb-16 reveal">
+      <div class="text-xs font-mono text-[var(--accent-bright)] mb-3 tracking-widest">// УСТАНОВКА</div>
+      <h2 class="font-bold text-4xl md:text-5xl lg:text-6xl leading-[0.95] mb-5">
+        3 шага до<br><span class="text-gradient">нового интерфейса</span>
+      </h2>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-6">
+      <div class="glass-card tilt-card p-8 relative reveal">
+        <div class="absolute top-8 right-8 font-bold text-5xl text-white/5 leading-none">01</div>
+        <div class="w-14 h-14 rounded-2xl flex items-center justify-center mb-6" style="background: rgba(255, 45, 146, 0.1); border: 1px solid rgba(255, 45, 146, 0.2);">
+          <i class="fas fa-download text-[var(--accent-bright)] text-2xl"></i>
+        </div>
+        <h3 class="font-bold text-xl mb-3">Скачай VINTAGE</h3>
+        <p class="text-sm text-[var(--muted)] leading-relaxed">Загрузи клиент с этой страницы. Весит 12 МБ, работает без установки — просто .jar файл для 1.21.11.</p>
+      </div>
+
+      <div class="glass-card tilt-card p-8 relative reveal reveal-delay-1">
+        <div class="absolute top-8 right-8 font-bold text-5xl text-white/5 leading-none">02</div>
+        <div class="w-14 h-14 rounded-2xl flex items-center justify-center mb-6" style="background: rgba(255, 45, 146, 0.1); border: 1px solid rgba(255, 45, 146, 0.2);">
+          <i class="fas fa-cube text-[var(--accent-bright)] text-2xl"></i>
+        </div>
+        <h3 class="font-bold text-xl mb-3">Запусти с Java</h3>
+        <p class="text-sm text-[var(--muted)] leading-relaxed">Двойной клик по файлу. VINTAGE сам найдёт твою версию Minecraft 1.21.11 и предложит загрузить нужную.</p>
+      </div>
+
+      <div class="glass-card tilt-card p-8 relative reveal reveal-delay-2">
+        <div class="absolute top-8 right-8 font-bold text-5xl text-white/5 leading-none">03</div>
+        <div class="w-14 h-14 rounded-2xl flex items-center justify-center mb-6" style="background: rgba(255, 45, 146, 0.1); border: 1px solid rgba(255, 45, 146, 0.2);">
+          <i class="fas fa-sliders text-[var(--accent-bright)] text-2xl"></i>
+        </div>
+        <h3 class="font-bold text-xl mb-3">Настрой и играй</h3>
+        <p class="text-sm text-[var(--muted)] leading-relaxed">Открой меню (Right Shift), включи нужные модули, выбери пресет. Готово — заходи на сервер.</p>
+      </div>
+    </div>
+
+    <div class="mt-12 glass-card tilt-card p-8 flex flex-wrap items-center justify-between gap-6 reveal" style="border-color: rgba(255, 45, 146, 0.15);">
+      <div class="flex items-center gap-5">
+        <div class="w-14 h-14 rounded-2xl flex items-center justify-center flex-shrink-0" style="background: linear-gradient(135deg, var(--accent), var(--magenta)); box-shadow: inset 0 1px 1px rgba(255,255,255,0.2);">
+          <i class="fas fa-bolt text-white text-2xl"></i>
+        </div>
+        <div>
+          <h3 class="font-bold text-lg mb-1">VINTAGE v4.0 — Liquid Update</h3>
+          <p class="text-sm text-[var(--muted)]">12.4 MB · Windows / macOS / Linux · Java 8+ · MC 1.21.11</p>
+        </div>
+      </div>
+      <button class="btn-primary" onclick="showToast('VINTAGE v4.0 (MC 1.21.11) — загрузка началась')">
+        <i class="fas fa-download"></i>
+        Скачать клиент
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" class="relative py-24 lg:py-32">
+  <div class="max-w-3xl mx-auto px-6">
+    <div class="text-center mb-14 reveal">
+      <div class="text-xs font-mono text-[var(--accent-bright)] mb-3 tracking-widest">// ВОПРОСЫ</div>
+      <h2 class="font-bold text-4xl md:text-5xl lg:text-6xl leading-[0.95]">
+        Частые<br><span class="text-gradient">вопросы</span>
+      </h2>
+    </div>
+    <div class="space-y-4" id="faqList"></div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="relative py-24 lg:py-32 overflow-hidden">
+  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full opacity-20" style="background: radial-gradient(circle, var(--accent-glow), transparent 60%); filter: blur(80px);"></div>
+
+  <div class="relative max-w-4xl mx-auto px-6 text-center reveal">
+    <div class="text-xs font-mono text-[var(--accent-bright)] mb-4 tracking-widest">// ГОТОВ?</div>
+    <h2 class="font-bold text-4xl md:text-5xl lg:text-7xl leading-[0.95] mb-6">
+      Сделай свой интерфейс<br><span class="text-gradient">живым</span>
+    </h2>
+    <p class="text-[var(--muted)] text-lg mb-10 max-w-2xl mx-auto">870 000+ игроков уже играют с VINTAGE. Присоединяйся — это бесплатно.</p>
+    <div class="flex flex-wrap gap-4 justify-center">
+      <button class="btn-primary" onclick="showToast('Загрузка VINTAGE для 1.21.11 началась')">
+        <i class="fas fa-download"></i>
+        Скачать бесплатно
+      </button>
+      <a href="https://discord.gg/AqVChZKu8V" target="_blank" class="btn-ghost">
+        <i class="fab fa-discord"></i>
+        Discord
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="relative py-14 border-t border-white/5">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="grid md:grid-cols-5 gap-10 mb-12">
+      <div class="md:col-span-2">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="logo-box" style="width: 40px; height: 40px;">
+            <span class="logo-v" style="font-size: 22px;">V</span>
+          </div>
+          <span class="font-bold text-lg">VINTAGE</span>
+        </div>
+        <p class="text-sm text-[var(--muted)] max-w-sm leading-relaxed mb-5">Студия визуалов для Minecraft 1.21.11. Чистая косметика без читов. Совместим с Hypixel, Mineplex, CubeCraft и любыми серверами.</p>
+        <div class="flex gap-3">
+          <a href="https://discord.gg/AqVChZKu8V" target="_blank" class="w-10 h-10 liquid-glass rounded-xl flex items-center justify-center hover:text-[var(--accent-bright)] transition"><i class="fab fa-discord"></i></a>
+          <a href="https://t.me/vintageCS2" target="_blank" class="w-10 h-10 liquid-glass rounded-xl flex items-center justify-center hover:text-[var(--accent-bright)] transition"><i class="fab fa-telegram"></i></a>
+          <a href="#" class="w-10 h-10 liquid-glass rounded-xl flex items-center justify-center hover:text-[var(--accent-bright)] transition"><i class="fab fa-youtube"></i></a>
+          <a href="#" class="w-10 h-10 liquid-glass rounded-xl flex items-center justify-center hover:text-[var(--accent-bright)] transition"><i class="fab fa-github"></i></a>
+        </div>
+      </div>
+      <div>
+        <h4 class="font-bold text-sm mb-4 tracking-wider">МОДУЛИ</h4>
+        <ul class="space-y-2 text-sm text-[var(--muted)]">
+          <li><a href="#categories" class="hover:text-white transition">Combat HUD</a></li>
+          <li><a href="#categories" class="hover:text-white transition">Input Display</a></li>
+          <li><a href="#categories" class="hover:text-white transition">Status HUD</a></li>
+          <li><a href="#categories" class="hover:text-white transition">Performance</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-bold text-sm mb-4 tracking-wider">ПОМОЩЬ</h4>
+        <ul class="space-y-2 text-sm text-[var(--muted)]">
+          <li><a href="#install" class="hover:text-white transition">Установка</a></li>
+          <li><a href="#faq" class="hover:text-white transition">FAQ</a></li>
+          <li><a href="#" class="hover:text-white transition">Гайды</a></li>
+          <li><a href="#" class="hover:text-white transition">Поддержка</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-bold text-sm mb-4 tracking-wider">ПРОЕКТ</h4>
+        <ul class="space-y-2 text-sm text-[var(--muted)]">
+          <li><a href="#" class="hover:text-white transition">О нас</a></li>
+          <li><a href="#" class="hover:text-white transition">Команда</a></li>
+          <li><a href="#" class="hover:text-white transition">Блог</a></li>
+          <li><a href="#" class="hover:text-white transition">Контакты</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between gap-4 text-xs text-[var(--muted)] font-mono">
+      <div>© 2024 VINTAGE Client. Не аффилирован с Mojang AB. Minecraft — торговая марка Mojang.</div>
+      <div class="flex gap-6">
+        <a href="#" class="hover:text-white transition">Конфиденциальность</a>
+        <a href="#" class="hover:text-white transition">Условия</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  /* ========= СЧЁТЧИКИ ========= */
+  function animateCounter(el) {
+    const target = parseInt(el.dataset.counter);
+    const suffix = el.dataset.suffix || '';
+    const duration = 2200;
+    const start = performance.now();
+    function step(now) {
+      const progress = Math.min((now - start) / duration, 1);
+      const ease = 1 - Math.pow(1 - progress, 4);
+      let value = Math.floor(target * ease);
+      if (target >= 1000000) el.textContent = (value / 1000000).toFixed(1) + 'M' + suffix;
+      else if (target >= 1000) el.textContent = (value / 1000).toFixed(0) + 'K' + suffix;
+      else el.textContent = value + suffix;
+      if (progress < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+
+  /* ========= REVEAL ========= */
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+  const counterObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        animateCounter(entry.target);
+        counterObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.5 });
+  document.querySelectorAll('[data-counter]').forEach(el => counterObserver.observe(el));
+
+  /* ========= ХЕДЕР ========= */
+  const header = document.querySelector('header');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 30) header.classList.add('scrolled');
+    else header.classList.remove('scrolled');
+  });
+
+  /* ========= ДАННЫЕ МОДУЛЕЙ ========= */
+  const modules = [
+    { name: 'TargetHUD', category: 'Combat', desc: 'Информация о цели: ник, HP, дистанция. С анимацией получения урона.', badge: 'hot', type: 'targethud' },
+    { name: 'Keystrokes', category: 'Input', desc: 'Визуализация нажатий WASD, мыши и пробела. С CPS счётчиком.', badge: 'hot', type: 'keystrokes' },
+    { name: 'Combo Counter', category: 'Combat', desc: 'Счётчик последовательных ударов по врагу. Сбрасывается при промахе.', type: 'combo' },
+    { name: 'Armor Status', category: 'Status', desc: 'Прочность брони и предметов в руках. Цветовая индикация износа.', type: 'armor' },
+    { name: 'FPS Display', category: 'Performance', desc: 'Счётчик FPS с мини-графиком и историей за последние 10 секунд.', type: 'fps' },
+    { name: 'Coordinates', category: 'World', desc: 'XYZ координаты, биом, время суток, направление взгляда.', badge: 'new', type: 'coords' },
+    { name: 'Potion HUD', category: 'Status', desc: 'Активные эффекты зелий с таймером и уровнем. Компактно и наглядно.', type: 'potion' },
+    { name: 'CPS Counter', category: 'Input', desc: 'Клики в секунду: LMB, RMB и среднее значение за бой.', type: 'cps' },
+    { name: 'Ping Display', category: 'Performance', desc: 'Твой пинг до сервера в реальном времени. Цвет при высоком пинге.', type: 'ping' },
+    { name: 'Reach Display', category: 'Combat', desc: 'Дистанция удара по цели. Помогает контролировать range PvP.', badge: 'new', type: 'reach' }
+  ];
+
+  function renderHudPreview(type) {
+    switch(type) {
+      case 'targethud':
+        return `<div class="mini-hud" style="width: 78%;"><div class="thud"><div class="thud-avatar">S</div><div class="thud-info"><div class="thud-name">Steve_Player</div><div class="thud-bar"><div class="thud-bar-fill" style="width: 68%;"></div></div><div class="thud-hp">13.6 / 20 HP · 3.2m</div></div></div></div>`;
+      case 'keystrokes':
+        return `<div class="mini-hud" style="width: 60%; padding: 16px;"><div class="keys"><div class="key empty"></div><div class="key demo-key-w">W</div><div class="key empty"></div><div class="key demo-key-a">A</div><div class="key demo-key-s">S</div><div class="key demo-key-d">D</div></div></div>`;
+      case 'combo':
+        return `<div class="mini-hud" style="width: 50%; padding: 16px;"><div class="combo-display"><div class="combo-num">11</div><div class="combo-label">COMBO</div></div></div>`;
+      case 'armor':
+        return `<div class="mini-hud" style="width: 75%; padding: 16px;"><div class="armor-slots"><div class="armor-slot"><i class="fas fa-helmet-safety"></i><div class="durab">120</div></div><div class="armor-slot"><i class="fas fa-shield-halved"></i><div class="durab">87</div></div><div class="armor-slot"><i class="fas fa-shield-halved"></i><div class="durab">156</div></div><div class="armor-slot"><i class="fas fa-shoe-prints"></i><div class="durab">42</div></div></div></div>`;
+      case 'fps':
+        return `<div class="mini-hud" style="width: 60%; padding: 16px;"><div class="fps-display"><div class="fps-num">312</div><div class="fps-label">FPS</div><div class="fps-graph"><div class="fps-bar fps-bar-demo" style="height: 50%;"></div><div class="fps-bar fps-bar-demo" style="height: 70%; animation-delay: 0.1s;"></div><div class="fps-bar fps-bar-demo" style="height: 45%; animation-delay: 0.2s;"></div><div class="fps-bar fps-bar-demo" style="height: 85%; animation-delay: 0.3s;"></div><div class="fps-bar fps-bar-demo" style="height: 60%; animation-delay: 0.4s;"></div><div class="fps-bar fps-bar-demo" style="height: 75%; animation-delay: 0.5s;"></div></div></div></div>`;
+      case 'coords':
+        return `<div class="mini-hud" style="width: 80%; padding: 16px;"><div class="coords"><div><span class="label">X</span> <span class="val">-1248</span></div><div><span class="label">Y</span> <span class="val">71</span></div><div><span class="label">Z</span> <span class="val">4521</span></div><div style="margin-top: 6px;"><span class="label">BIOME</span> <span class="val">Plains</span></div></div></div>`;
+      case 'potion':
+        return `<div class="mini-hud" style="width: 70%; padding: 14px;"><div style="display: flex; flex-direction: column; gap: 8px;"><div style="display: flex; align-items: center; gap: 10px; font-size: 11px;"><div style="width: 24px; height: 24px; background: rgba(255,45,146,0.15); border: 1px solid rgba(255,45,146,0.3); border-radius: 8px; display: flex; align-items: center; justify-content: center;"><i class="fas fa-flask" style="color: var(--accent-bright); font-size: 10px;"></i></div><div style="flex: 1;"><div style="color: white; font-weight: 600;">Strength II</div><div style="color: rgba(255,255,255,0.5); font-size: 9px;">1:24</div></div></div><div style="display: flex; align-items: center; gap: 10px; font-size: 11px;"><div style="width: 24px; height: 24px; background: rgba(255,45,146,0.15); border: 1px solid rgba(255,45,146,0.3); border-radius: 8px; display: flex; align-items: center; justify-content: center;"><i class="fas fa-flask" style="color: var(--accent-bright); font-size: 10px;"></i></div><div style="flex: 1;"><div style="color: white; font-weight: 600;">Speed II</div><div style="color: rgba(255,255,255,0.5); font-size: 9px;">2:48</div></div></div></div></div>`;
+      case 'cps':
+        return `<div class="mini-hud" style="width: 55%; padding: 16px;"><div style="text-align: center;"><div style="font-family: 'Sora'; font-weight: 800; font-size: 32px; background: linear-gradient(135deg, var(--accent), var(--magenta)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; line-height: 1;">8.4</div><div style="font-size: 9px; color: rgba(255,255,255,0.5); letter-spacing: 0.15em; margin-top: 4px;">CPS</div></div></div>`;
+      case 'ping':
+        return `<div class="mini-hud" style="width: 55%; padding: 16px;"><div style="text-align: center;"><div style="font-family: 'Sora'; font-weight: 800; font-size: 28px; color: var(--accent-bright); line-height: 1;">12<span style="font-size: 14px; color: rgba(255,255,255,0.5);">ms</span></div><div style="font-size: 9px; color: rgba(255,255,255,0.5); letter-spacing: 0.15em; margin-top: 6px;">PING</div><div style="margin-top: 10px; display: flex; gap: 3px; justify-content: center;"><div style="width: 5px; height: 14px; background: var(--accent); border-radius: 2px;"></div><div style="width: 5px; height: 14px; background: var(--accent); border-radius: 2px;"></div><div style="width: 5px; height: 14px; background: var(--accent); border-radius: 2px;"></div><div style="width: 5px; height: 14px; background: rgba(255,255,255,0.1); border-radius: 2px;"></div></div></div></div>`;
+      case 'reach':
+        return `<div class="mini-hud" style="width: 60%; padding: 16px;"><div style="text-align: center;"><div style="font-family: 'Sora'; font-weight: 800; font-size: 28px; background: linear-gradient(135deg, var(--accent), var(--magenta)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; line-height: 1;">2.98<span style="font-size: 12px; color: rgba(255,255,255,0.5);">m</span></div><div style="font-size: 9px; color: rgba(255,255,255,0.5); letter-spacing: 0.15em; margin-top: 6px;">REACH</div></div></div>`;
+      default: return '';
+    }
+  }
+
+  /* ========= STICKY HORIZONTAL ========= */
+  const hTrack = document.getElementById('hTrack');
+  const showcaseModules = modules.slice(0, 8);
+
+  showcaseModules.forEach((mod, i) => {
+    const card = document.createElement('div');
+    card.className = 'h-card glass-card tilt-card';
+    const badgeHtml = mod.badge === 'hot' ? '<div class="badge badge-hot">HOT</div>' : mod.badge === 'new' ? '<div class="badge badge-new">NEW</div>' : '';
+
+    card.innerHTML = `
+      <div class="hud-preview" style="height: 60%; aspect-ratio: auto; border-bottom: 1px solid rgba(255,255,255,0.05);">
+        ${renderHudPreview(mod.type)}
+        ${badgeHtml}
+        <div class="absolute top-5 left-5"><span class="pack-tag">${mod.category.toUpperCase()}</span></div>
+      </div>
+      <div class="p-7" style="height: 40%;">
+        <div class="flex items-center gap-2 mb-3">
+          <span class="font-mono text-xs text-[var(--muted)]">${String(i + 1).padStart(2, '0')}</span>
+          <span class="font-mono text-xs text-[var(--accent-bright)]">·</span>
+          <span class="font-mono text-xs text-[var(--muted)]">MC 1.21.11</span>
+        </div>
+        <h3 class="font-bold text-2xl mb-2 leading-tight">${mod.name}</h3>
+        <p class="text-sm text-[var(--muted)] mb-4 leading-relaxed">${mod.desc}</p>
+        <div class="flex items-center justify-between pt-4 border-t border-white/5">
+          <span class="font-mono text-xs text-[var(--muted)]">Входит в базовый комплект</span>
+          <span class="font-mono text-xs text-[var(--accent-bright)]">VINTAGE</span>
+        </div>
+      </div>
+    `;
+    hTrack.appendChild(card);
+  });
+
+  const stickySection = document.querySelector('.sticky-horizontal');
+  const hProgress = document.getElementById('hProgress');
+  const hCurrent = document.getElementById('hCurrent');
+  const hTotal = document.getElementById('hTotal');
+  hTotal.textContent = String(showcaseModules.length).padStart(2, '0');
+
+  let currentTranslate = 0;
+  let targetTranslate = 0;
+
+  function updateStickyScroll() {
+    const rect = stickySection.getBoundingClientRect();
+    const sectionHeight = stickySection.offsetHeight;
+    const viewportHeight = window.innerHeight;
+    const scrollableDistance = sectionHeight - viewportHeight;
+
+    if (rect.top <= 0 && rect.bottom >= viewportHeight) {
+      const progress = Math.max(0, Math.min(1, -rect.top / scrollableDistance));
+      const trackScrollWidth = hTrack.scrollWidth - window.innerWidth + 100;
+      targetTranslate = -progress * trackScrollWidth;
+
+      hProgress.style.width = (progress * 100) + '%';
+      const currentIndex = Math.min(showcaseModules.length, Math.floor(progress * showcaseModules.length) + 1);
+      hCurrent.textContent = String(currentIndex).padStart(2, '0');
+    } else if (rect.top > 0) {
+      targetTranslate = 0;
+      hProgress.style.width = '0%';
+      hCurrent.textContent = '01';
+    } else if (rect.bottom < viewportHeight) {
+      const trackScrollWidth = hTrack.scrollWidth - window.innerWidth + 100;
+      targetTranslate = -trackScrollWidth;
+      hProgress.style.width = '100%';
+      hCurrent.textContent = hTotal.textContent;
+    }
+  }
+
+  function smoothScroll() {
+    currentTranslate += (targetTranslate - currentTranslate) * 0.18;
+    hTrack.style.transform = `translateX(${currentTranslate}px)`;
+    requestAnimationFrame(smoothScroll);
+  }
+  smoothScroll();
+
+  window.addEventListener('scroll', () => {
+    requestAnimationFrame(updateStickyScroll);
+  }, { passive: true });
+  window.addEventListener('resize', updateStickyScroll);
+  updateStickyScroll();
+
+  /* ========= DRAG CAROUSEL ========= */
+  const carousel = document.getElementById('carousel');
+  const carouselTrack = document.getElementById('carouselTrack');
+  const carouselProgress = document.getElementById('carouselProgress');
+  const prevBtn = document.getElementById('carouselPrev');
+  const nextBtn = document.getElementById('carouselNext');
+
+  modules.forEach((mod) => {
+    const card = document.createElement('div');
+    card.className = 'glass-card tilt-card overflow-hidden';
+    card.style.height = '440px';
+    const badgeHtml = mod.badge === 'hot' ? '<div class="badge badge-hot">HOT</div>' : mod.badge === 'new' ? '<div class="badge badge-new">NEW</div>' : '';
+
+    card.innerHTML = `
+      <div class="hud-preview">
+        ${renderHudPreview(mod.type)}
+        ${badgeHtml}
+        <div class="absolute top-4 left-4"><span class="pack-tag">${mod.category.toUpperCase()}</span></div>
+      </div>
+      <div class="p-6">
+        <h3 class="font-bold text-lg mb-2">${mod.name}</h3>
+        <p class="text-xs text-[var(--muted)] mb-4 leading-relaxed">${mod.desc}</p>
+        <div class="flex items-center justify-between pt-3 border-t border-white/5">
+          <span class="font-mono text-xs text-[var(--muted)]">MC 1.21.11</span>
+          <span class="font-mono text-xs text-[var(--accent-bright)]">Входит в клиент</span>
+        </div>
+      </div>
+    `;
+    card.addEventListener('click', () => {
+      if (!carousel.classList.contains('dragging')) {
+        showToast(`Модуль ${mod.name} входит в базовый клиент VINTAGE`);
+      }
+    });
+    carouselTrack.appendChild(card);
+  });
+
+  let isDown = false;
+  let startX = 0;
+  let startTranslate = 0;
+  let currentCarouselX = 0;
+  let velocity = 0;
+  let lastX = 0;
+  let momentumId = null;
+
+  function getMaxTranslate() {
+    return Math.max(0, carouselTrack.scrollWidth - carousel.offsetWidth + 80);
+  }
+
+  function updateCarouselProgress() {
+    const max = getMaxTranslate();
+    const progress = max > 0 ? Math.min(1, Math.abs(currentCarouselX) / max) : 0;
+    carouselProgress.style.width = (progress * 100) + '%';
+    
+    prevBtn.disabled = currentCarouselX >= 0;
+    nextBtn.disabled = currentCarouselX <= -getMaxTranslate();
+  }
+
+  function setCarouselX(x) {
+    currentCarouselX = Math.min(0, Math.max(-getMaxTranslate(), x));
+    carouselTrack.style.transform = `translateX(${currentCarouselX}px)`;
+    updateCarouselProgress();
+  }
+
+  carousel.addEventListener('mousedown', (e) => {
+    isDown = true;
+    carousel.classList.add('dragging');
+    startX = e.clientX;
+    startTranslate = currentCarouselX;
+    lastX = e.clientX;
+    velocity = 0;
+    if (momentumId) cancelAnimationFrame(momentumId);
+  });
+
+  window.addEventListener('mousemove', (e) => {
+    if (!isDown) return;
+    e.preventDefault();
+    const dx = e.clientX - startX;
+    velocity = e.clientX - lastX;
+    lastX = e.clientX;
+    setCarouselX(startTranslate + dx);
+  });
+
+  window.addEventListener('mouseup', () => {
+    if (!isDown) return;
+    isDown = false;
+    carousel.classList.remove('dragging');
+    momentum();
+  });
+
+  function momentum() {
+    if (Math.abs(velocity) < 0.5) return;
+    velocity *= 0.92;
+    setCarouselX(currentCarouselX + velocity);
+    momentumId = requestAnimationFrame(momentum);
+  }
+
+  carousel.addEventListener('touchstart', (e) => {
+    isDown = true;
+    carousel.classList.add('dragging');
+    startX = e.touches[0].clientX;
+    startTranslate = currentCarouselX;
+    lastX = e.touches[0].clientX;
+    velocity = 0;
+    if (momentumId) cancelAnimationFrame(momentumId);
+  }, { passive: true });
+
+  carousel.addEventListener('touchmove', (e) => {
+    if (!isDown) return;
+    const dx = e.touches[0].clientX - startX;
+    velocity = e.touches[0].clientX - lastX;
+    lastX = e.touches[0].clientX;
+    setCarouselX(startTranslate + dx);
+  }, { passive: true });
+
+  carousel.addEventListener('touchend', () => {
+    isDown = false;
+    carousel.classList.remove('dragging');
+    momentum();
+  });
+
+  function scrollToCard(direction) {
+    const cardWidth = 344;
+    setCarouselX(currentCarouselX - direction * cardWidth * 2);
+  }
+  prevBtn.addEventListener('click', () => scrollToCard(-1));
+  nextBtn.addEventListener('click', () => scrollToCard(1));
+
+  carousel.addEventListener('wheel', (e) => {
+    if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
+      e.preventDefault();
+      setCarouselX(currentCarouselX - e.deltaX);
+    }
+  }, { passive: false });
+
+  updateCarouselProgress();
+
+  /* ========= 3D TILT EFFECT (ИСПРАВЛЕННАЯ ВЕРСИЯ БЕЗ РЕЗКИХ СКАЧКОВ) ========= */
+  let activeTilt = null;
+
+  function resetTilt(card) {
+    card.style.transition = 'transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.4s ease';
+    card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale(1)';
+  }
+
+  window.addEventListener('mousemove', (e) => {
+    if (carousel.classList.contains('dragging')) return;
+    
+    const card = e.target.closest('.tilt-card');
+    if (card) {
+      if (activeTilt !== card) {
+        if (activeTilt) resetTilt(activeTilt);
+        activeTilt = card;
+        // Плавный вход в наклон (0.15s), чтобы не было резкого скачка
+        card.style.transition = 'transform 0.15s ease-out, box-shadow 0.4s ease';
+      }
+      
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+      
+      const rotateX = ((y - centerY) / centerY) * -6;
+      const rotateY = ((x - centerX) / centerX) * 6;
+      
+      card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
+      
+      const mx = (x / rect.width) * 100;
+      const my = (y / rect.height) * 100;
+      card.style.setProperty('--mx', `${mx}%`);
+      card.style.setProperty('--my', `${my}%`);
+    } else if (activeTilt) {
+      resetTilt(activeTilt);
+      activeTilt = null;
+    }
+  });
+
+  /* ========= DRAGGABLE HERO HUD ========= */
+  document.querySelectorAll('.draggable-hud').forEach(hud => {
+    let isDraggingHud = false;
+    let offsetX, offsetY;
+
+    hud.addEventListener('mousedown', (e) => {
+      e.stopPropagation();
+      e.preventDefault();
+      isDraggingHud = true;
+      hud.style.cursor = 'grabbing';
+      hud.style.zIndex = 20;
+      
+      const rect = hud.getBoundingClientRect();
+      offsetX = e.clientX - rect.left;
+      offsetY = e.clientY - rect.top;
+      
+      hud.style.right = 'auto';
+      hud.style.bottom = 'auto';
+      hud.style.transform = 'none'; // Сброс центрирования для Keystrokes
+    });
+
+    window.addEventListener('mousemove', (e) => {
+      if (!isDraggingHud) return;
+      e.preventDefault();
+      
+      const parent = hud.parentElement.getBoundingClientRect();
+      let x = e.clientX - parent.left - offsetX;
+      let y = e.clientY - parent.top - offsetY;
+
+      // Ограничиваем перемещение внутри родителя
+      x = Math.max(0, Math.min(x, parent.width - hud.offsetWidth));
+      y = Math.max(0, Math.min(y, parent.height - hud.offsetHeight));
+
+      hud.style.left = x + 'px';
+      hud.style.top = y + 'px';
+    });
+
+    window.addEventListener('mouseup', () => {
+      if (isDraggingHud) {
+        isDraggingHud = false;
+        hud.style.cursor = 'grab';
+      }
+    });
+  });
+
+  /* ========= COMPARE SLIDER ========= */
+  const compareSlider = document.getElementById('compareSlider');
+  const compareBefore = document.getElementById('compareBefore');
+  const compareHandle = document.getElementById('compareHandle');
+  let isCompareDown = false;
+
+  function setComparePos(clientX) {
+    const rect = compareSlider.getBoundingClientRect();
+    let percent = ((clientX - rect.left) / rect.width) * 100;
+    percent = Math.max(0, Math.min(100, percent));
+    compareBefore.style.width = percent + '%';
+    compareHandle.style.left = percent + '%';
+  }
+
+  compareSlider.addEventListener('mousedown', (e) => {
+    isCompareDown = true;
+    setComparePos(e.clientX);
+  });
+  window.addEventListener('mousemove', (e) => {
+    if (isCompareDown) setComparePos(e.clientX);
+  });
+  window.addEventListener('mouseup', () => { isCompareDown = false; });
+
+  compareSlider.addEventListener('touchstart', (e) => {
+    isCompareDown = true;
+    setComparePos(e.touches[0].clientX);
+  }, { passive: true });
+  window.addEventListener('touchmove', (e) => {
+    if (isCompareDown) setComparePos(e.touches[0].clientX);
+  }, { passive: true });
+  window.addEventListener('touchend', () => { isCompareDown = false; });
+
+  /* ========= FAQ ========= */
+  const faqData = [
+    { q: 'Это читы? Меня забанят?', a: 'Нет. VINTAGE содержит только косметические модули — визуальные оверлеи, индикаторы и счётчики. Здесь нет reach-хака, killaura, auto-clicker, triggerbot или любого другого функционала, дающего преимущество. Все модули показывают информацию, которую игра и так предоставляет. Hypixel, Mineplex, CubeCraft и большинство серверов разрешают подобные клиенты.' },
+    { q: 'На каких версиях работает?', a: 'VINTAGE разрабатывается эксклюзивно под Minecraft Java Edition 1.21.11. Мы сфокусировались на одной версии, чтобы выжать максимум из графического движка и гарантировать отсутствие багов совместимости.' },
+    { q: 'Чем это отличается от Lunar Client или Badlion?', a: 'VINTAGE фокусируется на эстетике и кастомизации. У нас больше свободы в настройке: любой модуль можно перекрасить, переместить, изменить размер, добавить анимацию. Lunar и Badlion более консервативны и тяжеловесны. VINTAGE весит 12 МБ и работает на слабых ПК.' },
+    { q: 'Можно ли стримить с VINTAGE?', a: 'Да, конечно. Многие стримеры используют VINTAGE — он отлично смотрится на экране, не перекрывает игровой процесс и легко настраивается под оверлей OBS. Есть специальный «Stream Mode» с уменьшенными тенями и прозрачностью.' },
+    { q: 'VINTAGE уменьшит FPS?', a: 'Минимально. Каждый модуль потребляет 1-3 FPS в среднем. На слабых ПК рекомендуем отключить blur-фоны и анимации. В режиме «Performance» VINTAGE отключает все эффекты и оставляет только текст — потери FPS не будет вообще.' },
+    { q: 'Это бесплатно?', a: 'Да, VINTAGE полностью бесплатен. У нас есть VINTAGE+ с премиум-темами оформления и ранним доступом к новым модулям за $3/мес, но базовый клиент со всеми 42 модулями доступен бесплатно навсегда.' }
+  ];
+
+  const faqList = document.getElementById('faqList');
+  faqData.forEach(item => {
+    const el = document.createElement('div');
+    el.className = 'faq-item';
+    el.innerHTML = `
+      <button class="faq-q">
+        <span>${item.q}</span>
+        <i class="fas fa-plus"></i>
+      </button>
+      <div class="faq-a">
+        <div class="faq-a-inner">${item.a}</div>
+      </div>
+    `;
+    el.querySelector('.faq-q').addEventListener('click', () => {
+      const isOpen = el.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => {
+        i.classList.remove('open');
+        i.querySelector('.faq-a').style.maxHeight = '0';
+      });
+      if (!isOpen) {
+        el.classList.add('open');
+        const answer = el.querySelector('.faq-a');
+        answer.style.maxHeight = answer.scrollHeight + 'px';
+      }
+    });
+    faqList.appendChild(el);
+  });
+
+  /* ========= TOAST ========= */
+  function showToast(message) {
+    const existing = document.querySelector('.toast');
+    if (existing) existing.remove();
+    const toast = document.createElement('div');
+    toast.className = 'toast';
+    toast.innerHTML = `
+      <i class="fas fa-check-circle"></i>
+      <span>${message}</span>
+    `;
+    document.body.appendChild(toast);
+    requestAnimationFrame(() => toast.classList.add('show'));
+    setTimeout(() => {
+      toast.classList.remove('show');
+      setTimeout(() => toast.remove(), 600);
+    }, 3400);
+  }
+</script>
+
+</body>
+</html>
