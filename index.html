@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>VINTAGE — Visuals для Minecraft 1.21.11</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -24,8 +24,7 @@
   }
 
   * { box-sizing: border-box; -webkit-font-smoothing: antialiased; }
-  html { scroll-behavior: smooth; }
-
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
   body {
     background: var(--bg);
     color: var(--fg);
@@ -33,6 +32,7 @@
     overflow-x: hidden;
     position: relative;
     min-height: 100vh;
+    width: 100%;
   }
 
   .font-display { font-family: 'Unbounded', sans-serif; }
@@ -125,11 +125,11 @@
   /* Кнопки */
   .btn-primary {
     background: linear-gradient(135deg, var(--accent), var(--magenta));
-    color: white; font-weight: 600; padding: 14px 32px; border-radius: 999px;
+    color: white; font-weight: 600; padding: 12px 24px; border-radius: 999px;
     transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); border: none; cursor: pointer;
     display: inline-flex; align-items: center; gap: 10px; position: relative; overflow: hidden;
     box-shadow: 0 8px 24px var(--accent-glow), inset 0 1px 1px rgba(255,255,255,0.3), inset 0 -8px 15px rgba(0,0,0,0.2);
-    font-size: 15px;
+    font-size: 14px;
   }
   .btn-primary::before {
     content: ''; position: absolute; inset: 0;
@@ -144,9 +144,9 @@
 
   .btn-ghost {
     background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(20px) saturate(180%);
-    color: var(--fg); font-weight: 500; padding: 14px 30px; border-radius: 999px;
+    color: var(--fg); font-weight: 500; padding: 12px 24px; border-radius: 999px;
     border: 1px solid rgba(255, 255, 255, 0.08); transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-    cursor: pointer; display: inline-flex; align-items: center; gap: 10px; font-size: 15px;
+    cursor: pointer; display: inline-flex; align-items: center; gap: 10px; font-size: 14px;
     box-shadow: inset 0 1px 1px rgba(255,255,255,0.1), inset 0 -10px 20px rgba(255,255,255,0.02);
   }
   .btn-ghost:hover {
@@ -156,14 +156,14 @@
 
   /* Логотип V */
   .logo-box {
-    width: 48px; height: 48px; display: flex; align-items: center; justify-content: center;
+    width: 44px; height: 44px; display: flex; align-items: center; justify-content: center;
     background: rgba(10, 5, 8, 0.4); backdrop-filter: blur(20px) saturate(180%);
-    border-radius: 14px;
+    border-radius: 12px;
     box-shadow: 0 4px 20px rgba(0,0,0,0.3), inset 0 1px 1px rgba(255, 255, 255, 0.1), inset 0 -8px 15px rgba(255, 255, 255, 0.03), inset 0 0 0 1px rgba(255, 255, 255, 0.05);
-    position: relative; overflow: hidden;
+    position: relative; overflow: hidden; flex-shrink: 0;
   }
   .logo-v {
-    font-family: 'Unbounded', sans-serif; font-weight: 900; font-size: 26px;
+    font-family: 'Unbounded', sans-serif; font-weight: 900; font-size: 24px;
     background: linear-gradient(to bottom, rgba(255,255,255,0.4), rgba(255,255,255,0.85));
     -webkit-background-clip: text; -webkit-text-fill-color: transparent;
     filter: drop-shadow(0 1px 1px rgba(0,0,0,0.3)); line-height: 1; transform: translateY(-1px);
@@ -175,7 +175,7 @@
   }
   .header-inner { transition: all 0.4s ease; }
 
-  /* STICKY ГОРИЗОНТАЛЬНЫЙ СКРОЛЛ */
+  /* STICKY ГОРИЗОНТАЛЬНЫЙ СКРОЛЛ (Десктоп) */
   .sticky-horizontal { height: 280vh; position: relative; }
   .sticky-horizontal-inner { position: sticky; top: 0; height: 100vh; overflow: hidden; display: flex; align-items: center; }
   .horizontal-track { display: flex; gap: 40px; padding: 0 8vw; will-change: transform; }
@@ -242,14 +242,14 @@
   /* FAQ */
   .faq-item { background: rgba(10, 5, 8, 0.3); backdrop-filter: blur(30px) saturate(180%); border-radius: 24px; overflow: hidden; transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); box-shadow: inset 0 1px 1px rgba(255,255,255,0.15), inset 0 -10px 20px rgba(255,255,255,0.01), inset 0 0 0 1px rgba(255,255,255,0.04); }
   .faq-item.open { background: rgba(255, 45, 146, 0.03); box-shadow: inset 0 1px 1px rgba(255,255,255,0.2), inset 0 -15px 30px rgba(255,45,146,0.05), inset 0 0 0 1px rgba(255,45,146,0.15); }
-  .faq-q { width: 100%; padding: 24px 28px; background: transparent; border: none; color: var(--fg); font-family: 'Sora', sans-serif; font-weight: 600; font-size: 17px; text-align: left; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+  .faq-q { width: 100%; padding: 20px 24px; background: transparent; border: none; color: var(--fg); font-family: 'Sora', sans-serif; font-weight: 600; font-size: 15px; text-align: left; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 16px; }
   .faq-q i { transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1); color: var(--accent); font-size: 18px; }
   .faq-item.open .faq-q i { transform: rotate(45deg); }
   .faq-a { max-height: 0; overflow: hidden; transition: max-height 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
-  .faq-a-inner { padding: 0 28px 24px; color: var(--muted); line-height: 1.7; font-size: 15px; }
+  .faq-a-inner { padding: 0 24px 20px; color: var(--muted); line-height: 1.7; font-size: 14px; }
 
   /* Toast */
-  .toast { position: fixed; bottom: 30px; left: 50%; transform: translate(-50%, 120%) scale(0.9); padding: 16px 24px; background: rgba(20, 5, 15, 0.6); backdrop-filter: blur(40px) saturate(180%); border: 1px solid rgba(255, 45, 146, 0.2); border-radius: 999px; color: var(--fg); font-size: 14px; font-weight: 500; display: flex; align-items: center; gap: 12px; z-index: 1000; transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1); box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 40px var(--accent-glow), inset 0 1px 1px rgba(255,255,255,0.15); max-width: 90vw; }
+  .toast { position: fixed; bottom: 20px; left: 50%; transform: translate(-50%, 120%) scale(0.9); padding: 14px 20px; background: rgba(20, 5, 15, 0.6); backdrop-filter: blur(40px) saturate(180%); border: 1px solid rgba(255, 45, 146, 0.2); border-radius: 999px; color: var(--fg); font-size: 13px; font-weight: 500; display: flex; align-items: center; gap: 12px; z-index: 1000; transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1); box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 40px var(--accent-glow), inset 0 1px 1px rgba(255,255,255,0.15); max-width: 90vw; }
   .toast.show { transform: translate(-50%, 0) scale(1); }
   .toast i { color: var(--accent-bright); font-size: 18px; }
 
@@ -257,7 +257,7 @@
   .reveal.visible { opacity: 1; transform: translateY(0) scale(1); }
   .reveal-delay-1 { transition-delay: 0.1s; } .reveal-delay-2 { transition-delay: 0.2s; } .reveal-delay-3 { transition-delay: 0.3s; }
 
-  ::-webkit-scrollbar { width: 6px; } ::-webkit-scrollbar-track { background: transparent; } ::-webkit-scrollbar-thumb { background: rgba(255, 45, 146, 0.3); border-radius: 999px; } ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+  ::-webkit-scrollbar { width: 6px; height: 6px; } ::-webkit-scrollbar-track { background: transparent; } ::-webkit-scrollbar-thumb { background: rgba(255, 45, 146, 0.3); border-radius: 999px; } ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
 
   @keyframes key-press { 0%, 70%, 100% { transform: scale(1); background: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.08); color: rgba(255,255,255,0.6); box-shadow: inset 0 1px 1px rgba(255,255,255,0.05); } 10%, 50% { transform: scale(0.92); background: linear-gradient(135deg, var(--accent), var(--magenta)); border-color: transparent; color: white; box-shadow: 0 4px 16px var(--accent-glow), inset 0 1px 1px rgba(255,255,255,0.2); } }
   .demo-key-w { animation: key-press 2.4s infinite; } .demo-key-a { animation: key-press 2.4s 0.3s infinite; } .demo-key-s { animation: key-press 2.4s 0.6s infinite; } .demo-key-d { animation: key-press 2.4s 0.9s infinite; }
@@ -270,78 +270,51 @@
 
   .text-gradient { background: linear-gradient(135deg, var(--accent) 0%, var(--magenta) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
 
-  .nav-arrow { width: 52px; height: 52px; border-radius: 50%; background: rgba(10, 5, 8, 0.4); backdrop-filter: blur(20px) saturate(180%); border: 1px solid rgba(255, 255, 255, 0.08); color: var(--fg); display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); box-shadow: inset 0 1px 1px rgba(255,255,255,0.1), inset 0 -8px 15px rgba(255,255,255,0.02); }
-  .nav-arrow:hover { background: linear-gradient(135deg, var(--accent), var(--magenta)); border-color: transparent; transform: scale(1.1); box-shadow: 0 8px 24px var(--accent-glow), inset 0 1px 1px rgba(255,255,255,0.2); }
+  .nav-arrow { width: 48px; height: 48px; border-radius: 50%; background: rgba(10, 5, 8, 0.4); backdrop-filter: blur(20px) saturate(180%); border: 1px solid rgba(255, 255, 255, 0.08); color: var(--fg); display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); box-shadow: inset 0 1px 1px rgba(255,255,255,0.1); flex-shrink: 0; }
+  .nav-arrow:hover { background: linear-gradient(135deg, var(--accent), var(--magenta)); border-color: transparent; transform: scale(1.1); box-shadow: 0 8px 24px var(--accent-glow); }
   .nav-arrow:disabled { opacity: 0.3; cursor: not-allowed; }
 
   /* DRAGGABLE HUD */
   .draggable-hud {
-    cursor: grab;
-    user-select: none;
-    touch-action: none;
+    cursor: grab; user-select: none; touch-action: none;
   }
-  .draggable-hud:active {
-    cursor: grabbing;
-  }
+  .draggable-hud:active { cursor: grabbing; }
 
   /* COMPARE SLIDER */
   .compare-slider {
-    position: relative;
-    aspect-ratio: 16/9;
-    border-radius: 32px;
-    overflow: hidden;
-    border: 1px solid rgba(255,255,255,0.08);
-    user-select: none;
-    cursor: ew-resize;
+    position: relative; aspect-ratio: 16/9; border-radius: 24px; overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.08); user-select: none; cursor: ew-resize; touch-action: none;
   }
-  .compare-slider img {
-    pointer-events: none;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-  .compare-before {
-    position: absolute;
-    top: 0; left: 0;
-    width: 50%;
-    height: 100%;
-    overflow: hidden;
-    z-index: 2;
-  }
-  .compare-before img {
-    position: absolute;
-    top: 0; left: 0;
-    width: 100vw;
-    max-width: none;
-    height: 100%;
-  }
-  .compare-handle {
-    position: absolute;
-    top: 0; bottom: 0;
-    left: 50%;
-    width: 3px;
-    background: var(--accent);
-    z-index: 3;
-    transform: translateX(-50%);
-    box-shadow: 0 0 20px var(--accent-glow);
-  }
-  .compare-knob {
-    position: absolute;
-    top: 50%; left: 50%;
-    transform: translate(-50%, -50%);
-    width: 52px; height: 52px;
-    background: var(--accent);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    font-size: 18px;
-    box-shadow: 0 0 30px var(--accent-glow), inset 0 1px 1px rgba(255,255,255,0.3);
+  .compare-slider img { pointer-events: none; width: 100%; height: 100%; object-fit: cover; }
+  .compare-before { position: absolute; top: 0; left: 0; width: 50%; height: 100%; overflow: hidden; z-index: 2; }
+  .compare-before img { position: absolute; top: 0; left: 0; width: 100vw; max-width: none; height: 100%; }
+  .compare-handle { position: absolute; top: 0; bottom: 0; left: 50%; width: 3px; background: var(--accent); z-index: 3; transform: translateX(-50%); box-shadow: 0 0 20px var(--accent-glow); }
+  .compare-knob { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 44px; height: 44px; background: var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 16px; box-shadow: 0 0 30px var(--accent-glow); }
+
+  /* === МОБИЛЬНЫЕ АДАПТАЦИИ === */
+  @media (max-width: 768px) {
+    .h-card { flex: 0 0 280px; height: 460px; }
+    .carousel-track > * { flex: 0 0 260px; }
+    
+    /* Отключаем Sticky горизонтальный скролл для мобильных */
+    .sticky-horizontal { height: auto; padding: 40px 0 60px; }
+    .sticky-horizontal-inner { position: relative; height: auto; display: block; }
+    .horizontal-track { 
+      transform: none !important; 
+      overflow-x: auto; 
+      scroll-snap-type: x mandatory; 
+      padding: 0 16px; 
+      gap: 16px; 
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+    .horizontal-track::-webkit-scrollbar { display: none; }
+    .h-card { scroll-snap-align: center; flex: 0 0 80vw; height: 480px; }
+    .sticky-horizontal-inner > .absolute.top-0 { position: relative !important; padding: 0 16px; margin-bottom: 24px; }
+    .sticky-horizontal-inner > .absolute.bottom-8 { display: none !important; }
   }
 
   @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; } }
-  @media (max-width: 768px) { .h-card { flex: 0 0 280px; height: 60vh; } .carousel-track > * { flex: 0 0 260px; } }
 </style>
 </head>
 <body>
@@ -354,14 +327,14 @@
 
 <!-- Header -->
 <header class="fixed top-0 left-0 right-0 z-50">
-  <div class="header-inner max-w-7xl mx-auto px-6 py-4 flex items-center justify-between rounded-b-3xl">
+  <div class="header-inner max-w-7xl mx-auto px-4 sm:px-6 py-3 sm:py-4 flex items-center justify-between rounded-b-3xl">
     <a href="#" class="flex items-center gap-3 group">
       <div class="logo-box">
         <span class="logo-v">V</span>
       </div>
       <div>
-        <div class="font-bold text-lg tracking-tight leading-none">VINTAGE</div>
-        <div class="font-mono text-[10px] text-[var(--muted)] mt-0.5">v4.0 · VISUALS</div>
+        <div class="font-bold text-base sm:text-lg tracking-tight leading-none">VINTAGE</div>
+        <div class="font-mono text-[10px] text-[var(--muted)] mt-0.5 hidden sm:block">v4.0 · VISUALS</div>
       </div>
     </a>
     <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-[var(--muted)]">
@@ -371,22 +344,19 @@
       <a href="#install" class="hover:text-white transition">Установка</a>
       <a href="#faq" class="hover:text-white transition">FAQ</a>
     </nav>
-    <button class="btn-primary text-sm hidden md:flex" onclick="showToast('VINTAGE Launcher скоро откроется!')">
+    <button class="btn-primary text-xs sm:text-sm flex" onclick="showToast('VINTAGE Launcher скоро откроется!')">
       <i class="fas fa-download text-xs"></i>
-      Скачать клиент
-    </button>
-    <button class="md:hidden w-10 h-10 rounded-full liquid-glass flex items-center justify-center">
-      <i class="fas fa-bars"></i>
+      Скачать
     </button>
   </div>
 </header>
 
 <!-- HERO -->
-<section class="relative min-h-screen pt-32 overflow-hidden flex items-center">
-  <div class="relative z-10 max-w-7xl mx-auto px-6 py-12 w-full">
-    <div class="grid lg:grid-cols-12 gap-12 items-center">
-      <div class="lg:col-span-7">
-        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full liquid-glass mb-8">
+<section class="relative min-h-screen pt-24 sm:pt-32 overflow-hidden flex items-center">
+  <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 py-8 sm:py-12 w-full">
+    <div class="grid lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+      <div class="lg:col-span-7 text-center lg:text-left">
+        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full liquid-glass mb-6 sm:mb-8">
           <span class="relative flex h-2 w-2">
             <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[var(--accent)] opacity-75"></span>
             <span class="relative inline-flex rounded-full h-2 w-2 bg-[var(--accent)]"></span>
@@ -394,17 +364,17 @@
           <span class="text-xs font-mono">Эксклюзивно для Minecraft 1.21.11</span>
         </div>
 
-        <h1 class="font-bold text-5xl sm:text-6xl lg:text-7xl xl:text-8xl leading-[0.95] tracking-tight mb-7">
+        <h1 class="font-bold text-4xl sm:text-5xl lg:text-7xl xl:text-8xl leading-[0.95] tracking-tight mb-5 sm:mb-7">
           HUD, который<br>
           <span class="text-gradient">течёт</span> вместе<br>
           с твоей игрой
         </h1>
 
-        <p class="text-lg text-[var(--muted)] max-w-xl mb-10 leading-relaxed">
+        <p class="text-base sm:text-lg text-[var(--muted)] max-w-xl mx-auto lg:mx-0 mb-8 sm:mb-10 leading-relaxed">
           Студия интерфейсов для Minecraft 1.21.11. TargetHUD, Keystrokes, Combo Counter и 40+ модулей. Чистая косметика без читов — легально на любом сервере.
         </p>
 
-        <div class="flex flex-wrap gap-4 mb-14">
+        <div class="flex flex-wrap gap-3 sm:gap-4 mb-10 sm:mb-14 justify-center lg:justify-start">
           <button class="btn-primary" onclick="document.getElementById('showcase').scrollIntoView({behavior:'smooth'})">
             <i class="fas fa-eye"></i>
             Смотреть витрину
@@ -415,35 +385,34 @@
           </button>
         </div>
 
-        <div class="grid grid-cols-3 gap-6 max-w-lg">
-          <div>
-            <div class="font-bold text-3xl lg:text-4xl text-gradient" data-counter="42">0</div>
-            <div class="text-xs text-[var(--muted)] mt-1 font-mono uppercase tracking-wider">модулей</div>
+        <div class="grid grid-cols-3 gap-4 sm:gap-6 max-w-md lg:max-w-lg mx-auto lg:mx-0">
+          <div class="text-center lg:text-left">
+            <div class="font-bold text-2xl sm:text-3xl lg:text-4xl text-gradient" data-counter="42">0</div>
+            <div class="text-[10px] sm:text-xs text-[var(--muted)] mt-1 font-mono uppercase tracking-wider">модулей</div>
           </div>
-          <div>
-            <div class="font-bold text-3xl lg:text-4xl text-gradient" data-counter="870000" data-suffix="+">0</div>
-            <div class="text-xs text-[var(--muted)] mt-1 font-mono uppercase tracking-wider">игроков</div>
+          <div class="text-center lg:text-left">
+            <div class="font-bold text-2xl sm:text-3xl lg:text-4xl text-gradient" data-counter="870000" data-suffix="+">0</div>
+            <div class="text-[10px] sm:text-xs text-[var(--muted)] mt-1 font-mono uppercase tracking-wider">игроков</div>
           </div>
-          <div>
-            <div class="font-bold text-3xl lg:text-4xl text-gradient" data-counter="100" data-suffix="%">0</div>
-            <div class="text-xs text-[var(--muted)] mt-1 font-mono uppercase tracking-wider">легально</div>
+          <div class="text-center lg:text-left">
+            <div class="font-bold text-2xl sm:text-3xl lg:text-4xl text-gradient" data-counter="100" data-suffix="%">0</div>
+            <div class="text-[10px] sm:text-xs text-[var(--muted)] mt-1 font-mono uppercase tracking-wider">легально</div>
           </div>
         </div>
       </div>
 
       <!-- Hero визуал с перетаскиваемыми HUD -->
-      <div class="lg:col-span-5 relative">
+      <div class="lg:col-span-5 relative w-full max-w-sm mx-auto">
         <div class="relative aspect-[4/5] rounded-[32px] overflow-hidden glass-card group" style="background: linear-gradient(135deg, #1a0414, #14001f);">
           
-          <!-- Подсказка -->
-          <div class="absolute top-5 left-5 z-30 pack-tag" style="background: rgba(255, 45, 146, 0.2); color: white; border-color: var(--accent);">
+          <div class="absolute top-4 left-4 z-30 pack-tag" style="background: rgba(255, 45, 146, 0.2); color: white; border-color: var(--accent);">
             <i class="fas fa-hand-pointer mr-1.5"></i> Тащи мышкой
           </div>
 
-          <div class="absolute top-5 right-5 z-30 badge" style="background: var(--accent); color: white; box-shadow: 0 4px 12px var(--accent-glow), inset 0 1px 1px rgba(255,255,255,0.2);">LIVE PREVIEW</div>
+          <div class="absolute top-4 right-4 z-30 badge" style="background: var(--accent); color: white; box-shadow: 0 4px 12px var(--accent-glow);">LIVE</div>
 
           <!-- Перетаскиваемые HUD элементы -->
-          <div class="mini-hud draggable-hud" style="position: absolute; top: 80px; left: 30px; width: 220px;">
+          <div class="mini-hud draggable-hud" style="position: absolute; top: 70px; left: 20px; width: 200px;">
             <div class="thud">
               <div class="thud-avatar">S</div>
               <div class="thud-info">
@@ -454,21 +423,21 @@
             </div>
           </div>
 
-          <div class="mini-hud draggable-hud" style="position: absolute; top: 60%; left: 30px; width: 100px; padding: 12px;">
+          <div class="mini-hud draggable-hud" style="position: absolute; top: 55%; left: 20px; width: 90px; padding: 10px;">
             <div class="combo-display">
-              <div class="combo-num">7</div>
+              <div class="combo-num" style="font-size: 32px;">7</div>
               <div class="combo-label">COMBO</div>
             </div>
           </div>
 
-          <div class="mini-hud draggable-hud" style="position: absolute; top: 60%; right: 30px; width: 90px; padding: 12px;">
+          <div class="mini-hud draggable-hud" style="position: absolute; top: 55%; right: 20px; width: 80px; padding: 10px;">
             <div class="fps-display">
-              <div class="fps-num" style="font-size: 24px;">312</div>
+              <div class="fps-num" style="font-size: 20px;">312</div>
               <div class="fps-label">FPS</div>
             </div>
           </div>
 
-          <div class="mini-hud draggable-hud" style="position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%); width: 130px; padding: 12px;">
+          <div class="mini-hud draggable-hud" style="position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); width: 120px; padding: 10px;">
             <div class="keys">
               <div class="key empty"></div>
               <div class="key demo-key-w">W</div>
@@ -481,15 +450,15 @@
 
         </div>
 
-        <div class="absolute -top-4 -left-4 liquid-glass rounded-2xl px-4 py-3">
+        <div class="absolute -top-3 -left-3 liquid-glass rounded-2xl px-3 py-2 hidden sm:block">
           <div class="flex items-center gap-2">
             <div class="w-2 h-2 bg-[var(--accent)] rounded-full pulse-dot"></div>
-            <span class="text-xs font-mono">RECORDING · 240 FPS</span>
+            <span class="text-[10px] font-mono">240 FPS</span>
           </div>
         </div>
-        <div class="absolute -bottom-4 -right-4 liquid-glass rounded-2xl px-4 py-3">
-          <div class="text-xs text-[var(--muted)] font-mono">VERSION</div>
-          <div class="font-bold text-lg text-[var(--accent-bright)]">1.21.11</div>
+        <div class="absolute -bottom-3 -right-3 liquid-glass rounded-2xl px-3 py-2 hidden sm:block">
+          <div class="text-[10px] text-[var(--muted)] font-mono">VERSION</div>
+          <div class="font-bold text-sm text-[var(--accent-bright)]">1.21.11</div>
         </div>
       </div>
     </div>
@@ -497,13 +466,13 @@
 </section>
 
 <!-- STICKY HORIZONTAL SCROLL -->
-<section id="showcase" class="sticky-horizontal">
+<section id="showcase" class="sticky-horizontal bg-[var(--bg)] border-t border-white/5">
   <div class="sticky-horizontal-inner">
-    <div class="absolute top-0 left-0 right-0 z-10 pt-24 px-8 pointer-events-none">
+    <div class="absolute top-0 left-0 right-0 z-10 pt-24 px-4 sm:px-8 pointer-events-none">
       <div class="max-w-7xl mx-auto flex items-end justify-between">
         <div>
-          <div class="text-xs font-mono text-[var(--accent-bright)] mb-3 tracking-widest">// ВИТРИНА — ЛИСТАЙ ВНИЗ</div>
-          <h2 class="font-bold text-4xl md:text-5xl lg:text-6xl leading-[0.95]">
+          <div class="text-xs font-mono text-[var(--accent-bright)] mb-3 tracking-widest">// ВИТРИНА</div>
+          <h2 class="font-bold text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-[0.95]">
             42 модуля.<br><span class="text-gradient">Один стиль.</span>
           </h2>
         </div>
@@ -516,7 +485,7 @@
 
     <div class="horizontal-track" id="hTrack"></div>
 
-    <div class="absolute bottom-8 left-8 right-8 z-10 flex items-center gap-4 max-w-7xl mx-auto">
+    <div class="absolute bottom-8 left-8 right-8 z-10 hidden md:flex items-center gap-4 max-w-7xl mx-auto">
       <div class="flex-1 progress-track">
         <div class="progress-bar" id="hProgress"></div>
       </div>
@@ -528,21 +497,19 @@
 </section>
 
 <!-- COMPARE SLIDER -->
-<section id="compare" class="relative py-24 lg:py-32">
-  <div class="max-w-5xl mx-auto px-6">
-    <div class="text-center mb-14 reveal">
+<section id="compare" class="relative py-16 sm:py-24 lg:py-32">
+  <div class="max-w-5xl mx-auto px-4 sm:px-6">
+    <div class="text-center mb-10 sm:mb-14 reveal">
       <div class="text-xs font-mono text-[var(--accent-bright)] mb-3 tracking-widest">// СРАВНЕНИЕ</div>
-      <h2 class="font-bold text-4xl md:text-5xl lg:text-6xl leading-[0.95] mb-5">
+      <h2 class="font-bold text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-[0.95] mb-5">
         Vanilla vs <span class="text-gradient">Vintage</span>
       </h2>
-      <p class="text-[var(--muted)] max-w-2xl mx-auto text-lg">Перетащи ползунок и увидь разницу</p>
+      <p class="text-[var(--muted)] max-w-2xl mx-auto text-base sm:text-lg">Перетащи ползунок и увидь разницу</p>
     </div>
 
     <div class="compare-slider reveal reveal-delay-1" id="compareSlider">
-      <!-- ЗАМЕНИ ЭТИ КАРТИНКИ НА СВОИ (Vintage справа) -->
       <img src="https://picsum.photos/seed/vintage-after/1600/900.jpg" alt="Vintage Visuals">
       <div class="compare-before" id="compareBefore">
-         <!-- ЗАМЕНИ ЭТУ КАРТИНКУ НА СВОЮ (Vanilla слева) -->
         <img src="https://picsum.photos/seed/vanilla-before/1600/900.jpg" alt="Vanilla Minecraft">
       </div>
       <div class="compare-handle" id="compareHandle">
@@ -555,12 +522,12 @@
 </section>
 
 <!-- DRAG CAROUSEL -->
-<section id="explore" class="relative py-24 lg:py-32">
-  <div class="max-w-7xl mx-auto px-6 mb-12">
-    <div class="flex flex-wrap items-end justify-between gap-6 reveal">
+<section id="explore" class="relative py-16 sm:py-24 lg:py-32">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 mb-8 sm:mb-12">
+    <div class="flex flex-wrap items-end justify-between gap-4 sm:gap-6 reveal">
       <div>
         <div class="text-xs font-mono text-[var(--accent-bright)] mb-3 tracking-widest">// КАТАЛОГ</div>
-        <h2 class="font-bold text-4xl md:text-5xl lg:text-6xl leading-[0.95]">
+        <h2 class="font-bold text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-[0.95]">
           Перетаскивай.<br><span class="text-gradient">Изучай.</span>
         </h2>
       </div>
@@ -573,8 +540,8 @@
         </button>
       </div>
     </div>
-    <p class="text-[var(--muted)] mt-4 max-w-xl reveal reveal-delay-1">
-      Зажми и тяни мышкой. Наведи на карточку — она наклонится, подстраиваясь под свет.
+    <p class="text-[var(--muted)] mt-4 max-w-xl text-sm sm:text-base reveal reveal-delay-1">
+      Зажми и тяни мышкой. Наведи на карточку — она наклонится.
     </p>
   </div>
 
@@ -582,7 +549,7 @@
     <div class="carousel-track" id="carouselTrack"></div>
   </div>
 
-  <div class="max-w-7xl mx-auto px-6 mt-10">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 mt-8 sm:mt-10">
     <div class="progress-track">
       <div class="progress-bar" id="carouselProgress"></div>
     </div>
@@ -590,87 +557,87 @@
 </section>
 
 <!-- CATEGORIES -->
-<section id="categories" class="relative py-24 lg:py-32">
-  <div class="max-w-7xl mx-auto px-6">
-    <div class="flex flex-wrap items-end justify-between gap-6 mb-14 reveal">
+<section id="categories" class="relative py-16 sm:py-24 lg:py-32">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6">
+    <div class="flex flex-wrap items-end justify-between gap-4 sm:gap-6 mb-10 sm:mb-14 reveal">
       <div>
         <div class="text-xs font-mono text-[var(--accent-bright)] mb-3 tracking-widest">// МОДУЛИ</div>
-        <h2 class="font-bold text-4xl md:text-5xl lg:text-6xl leading-[0.95]">
+        <h2 class="font-bold text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-[0.95]">
           Категории<br><span class="text-gradient">визуалов</span>
         </h2>
       </div>
-      <p class="text-[var(--muted)] max-w-sm">
+      <p class="text-[var(--muted)] max-w-sm text-sm sm:text-base">
         HUD, индикаторы, виджеты, оверлеи — всё, что делает интерфейс ближе к турнирному.
       </p>
     </div>
 
-    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-      <div class="glass-card tilt-card p-7 reveal">
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+      <div class="glass-card tilt-card p-5 sm:p-7 reveal">
         <div class="w-12 h-12 rounded-2xl flex items-center justify-center mb-5" style="background: rgba(255, 45, 146, 0.1); border: 1px solid rgba(255, 45, 146, 0.2);">
           <i class="fas fa-crosshairs text-[var(--accent-bright)] text-xl"></i>
         </div>
-        <h3 class="font-bold text-xl mb-2">Combat HUD</h3>
-        <p class="text-sm text-[var(--muted)] mb-4 leading-relaxed">TargetHUD, Reach Display, Combo Counter, Kill Effect. Вся боевая инфа в одном стиле.</p>
+        <h3 class="font-bold text-lg sm:text-xl mb-2">Combat HUD</h3>
+        <p class="text-xs sm:text-sm text-[var(--muted)] mb-4 leading-relaxed">TargetHUD, Reach Display, Combo Counter, Kill Effect. Вся боевая инфа в одном стиле.</p>
         <div class="flex items-center justify-between text-xs font-mono">
           <span class="text-[var(--muted)]">8 модулей</span>
           <span class="text-[var(--accent-bright)]">Входит в клиент →</span>
         </div>
       </div>
 
-      <div class="glass-card tilt-card p-7 reveal reveal-delay-1">
+      <div class="glass-card tilt-card p-5 sm:p-7 reveal reveal-delay-1">
         <div class="w-12 h-12 rounded-2xl flex items-center justify-center mb-5" style="background: rgba(255, 45, 146, 0.1); border: 1px solid rgba(255, 45, 146, 0.2);">
           <i class="fas fa-keyboard text-[var(--accent-bright)] text-xl"></i>
         </div>
-        <h3 class="font-bold text-xl mb-2">Input Display</h3>
-        <p class="text-sm text-[var(--muted)] mb-4 leading-relaxed">Keystrokes WASD, Mouse Buttons, CPS Counter, L-Click/R-Click индикаторы.</p>
+        <h3 class="font-bold text-lg sm:text-xl mb-2">Input Display</h3>
+        <p class="text-xs sm:text-sm text-[var(--muted)] mb-4 leading-relaxed">Keystrokes WASD, Mouse Buttons, CPS Counter, L-Click/R-Click индикаторы.</p>
         <div class="flex items-center justify-between text-xs font-mono">
           <span class="text-[var(--muted)]">6 модулей</span>
           <span class="text-[var(--accent-bright)]">Входит в клиент →</span>
         </div>
       </div>
 
-      <div class="glass-card tilt-card p-7 reveal reveal-delay-2">
+      <div class="glass-card tilt-card p-5 sm:p-7 reveal reveal-delay-2">
         <div class="w-12 h-12 rounded-2xl flex items-center justify-center mb-5" style="background: rgba(255, 45, 146, 0.1); border: 1px solid rgba(255, 45, 146, 0.2);">
           <i class="fas fa-heart text-[var(--accent-bright)] text-xl"></i>
         </div>
-        <h3 class="font-bold text-xl mb-2">Status HUD</h3>
-        <p class="text-sm text-[var(--muted)] mb-4 leading-relaxed">Armor Status, Potion Effects, Hunger/Health Bar, Saturation Display.</p>
+        <h3 class="font-bold text-lg sm:text-xl mb-2">Status HUD</h3>
+        <p class="text-xs sm:text-sm text-[var(--muted)] mb-4 leading-relaxed">Armor Status, Potion Effects, Hunger/Health Bar, Saturation Display.</p>
         <div class="flex items-center justify-between text-xs font-mono">
           <span class="text-[var(--muted)]">7 модулей</span>
           <span class="text-[var(--accent-bright)]">Входит в клиент →</span>
         </div>
       </div>
 
-      <div class="glass-card tilt-card p-7 reveal">
+      <div class="glass-card tilt-card p-5 sm:p-7 reveal">
         <div class="w-12 h-12 rounded-2xl flex items-center justify-center mb-5" style="background: rgba(255, 45, 146, 0.1); border: 1px solid rgba(255, 45, 146, 0.2);">
           <i class="fas fa-chart-line text-[var(--accent-bright)] text-xl"></i>
         </div>
-        <h3 class="font-bold text-xl mb-2">Performance</h3>
-        <p class="text-sm text-[var(--muted)] mb-4 leading-relaxed">FPS Counter, Ping Display, RAM Usage, TPS Indicator, Frame Graph.</p>
+        <h3 class="font-bold text-lg sm:text-xl mb-2">Performance</h3>
+        <p class="text-xs sm:text-sm text-[var(--muted)] mb-4 leading-relaxed">FPS Counter, Ping Display, RAM Usage, TPS Indicator, Frame Graph.</p>
         <div class="flex items-center justify-between text-xs font-mono">
           <span class="text-[var(--muted)]">5 модулей</span>
           <span class="text-[var(--accent-bright)]">Входит в клиент →</span>
         </div>
       </div>
 
-      <div class="glass-card tilt-card p-7 reveal reveal-delay-1">
+      <div class="glass-card tilt-card p-5 sm:p-7 reveal reveal-delay-1">
         <div class="w-12 h-12 rounded-2xl flex items-center justify-center mb-5" style="background: rgba(255, 45, 146, 0.1); border: 1px solid rgba(255, 45, 146, 0.2);">
           <i class="fas fa-location-arrow text-[var(--accent-bright)] text-xl"></i>
         </div>
-        <h3 class="font-bold text-xl mb-2">World Info</h3>
-        <p class="text-sm text-[var(--muted)] mb-4 leading-relaxed">Coordinates, Biome Display, Compass, Time HUD, Direction Indicator.</p>
+        <h3 class="font-bold text-lg sm:text-xl mb-2">World Info</h3>
+        <p class="text-xs sm:text-sm text-[var(--muted)] mb-4 leading-relaxed">Coordinates, Biome Display, Compass, Time HUD, Direction Indicator.</p>
         <div class="flex items-center justify-between text-xs font-mono">
           <span class="text-[var(--muted)]">6 модулей</span>
           <span class="text-[var(--accent-bright)]">Входит в клиент →</span>
         </div>
       </div>
 
-      <div class="glass-card tilt-card p-7 reveal reveal-delay-2">
+      <div class="glass-card tilt-card p-5 sm:p-7 reveal reveal-delay-2">
         <div class="w-12 h-12 rounded-2xl flex items-center justify-center mb-5" style="background: rgba(255, 45, 146, 0.1); border: 1px solid rgba(255, 45, 146, 0.2);">
           <i class="fas fa-palette text-[var(--accent-bright)] text-xl"></i>
         </div>
-        <h3 class="font-bold text-xl mb-2">Customize</h3>
-        <p class="text-sm text-[var(--muted)] mb-4 leading-relaxed">Color Themes, Fonts, Animations, Positioning, Scale, Blur Backgrounds.</p>
+        <h3 class="font-bold text-lg sm:text-xl mb-2">Customize</h3>
+        <p class="text-xs sm:text-sm text-[var(--muted)] mb-4 leading-relaxed">Color Themes, Fonts, Animations, Positioning, Scale, Blur Backgrounds.</p>
         <div class="flex items-center justify-between text-xs font-mono">
           <span class="text-[var(--muted)]">10 модулей</span>
           <span class="text-[var(--accent-bright)]">Входит в клиент →</span>
@@ -681,17 +648,17 @@
 </section>
 
 <!-- PRESETS -->
-<section class="relative py-24 lg:py-32">
-  <div class="max-w-7xl mx-auto px-6">
-    <div class="text-center mb-16 reveal">
+<section class="relative py-16 sm:py-24 lg:py-32">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6">
+    <div class="text-center mb-10 sm:mb-16 reveal">
       <div class="text-xs font-mono text-[var(--accent-bright)] mb-3 tracking-widest">// ПРЕСЕТЫ</div>
-      <h2 class="font-bold text-4xl md:text-5xl lg:text-6xl leading-[0.95] mb-5">
+      <h2 class="font-bold text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-[0.95] mb-5">
         Готовые <span class="text-gradient">сборки</span>
       </h2>
-      <p class="text-[var(--muted)] max-w-2xl mx-auto text-lg">Один клик — и весь комплект установлен. Подобрано дизайнерами VINTAGE.</p>
+      <p class="text-[var(--muted)] max-w-2xl mx-auto text-base sm:text-lg">Один клик — и весь комплект установлен.</p>
     </div>
 
-    <div class="grid md:grid-cols-3 gap-6">
+    <div class="grid md:grid-cols-3 gap-4 sm:gap-6">
       <div class="glass-card tilt-card overflow-hidden reveal">
         <div class="hud-preview">
           <div class="mini-hud" style="width: 70%;">
@@ -706,11 +673,11 @@
           </div>
           <span class="badge badge-hot">HOT</span>
         </div>
-        <div class="p-6">
-          <h3 class="font-bold text-lg mb-1">PvP Master</h3>
-          <p class="text-xs text-[var(--muted)] mb-4">TargetHUD, Keystrokes, Combo, Reach, Potions. Всё для Fights серверов.</p>
+        <div class="p-5 sm:p-6">
+          <h3 class="font-bold text-base sm:text-lg mb-1">PvP Master</h3>
+          <p class="text-xs text-[var(--muted)] mb-4">TargetHUD, Keystrokes, Combo, Reach, Potions.</p>
           <div class="flex items-center justify-between pt-3 border-t border-white/5">
-            <span class="font-mono text-xs text-[var(--muted)]">14 модулей · 2.1 MB</span>
+            <span class="font-mono text-[10px] sm:text-xs text-[var(--muted)]">14 модулей · 2.1 MB</span>
             <span class="text-xs text-[var(--accent-bright)] font-mono">Входит в клиент</span>
           </div>
         </div>
@@ -720,7 +687,7 @@
         <div class="hud-preview">
           <div class="mini-hud" style="width: 60%; padding: 16px;">
             <div class="fps-display">
-              <div class="fps-num" style="font-size: 36px;">312</div>
+              <div class="fps-num" style="font-size: 32px;">312</div>
               <div class="fps-label">FPS · ULTRA</div>
               <div class="fps-graph" style="margin-top: 12px;">
                 <div class="fps-bar fps-bar-demo" style="height: 60%;"></div>
@@ -734,11 +701,11 @@
             </div>
           </div>
         </div>
-        <div class="p-6">
-          <h3 class="font-bold text-lg mb-1">Minimal Pro</h3>
-          <p class="text-xs text-[var(--muted)] mb-4">FPS, Coordinates, Ping, Armor. Минимализм для слабых ПК и стримеров.</p>
+        <div class="p-5 sm:p-6">
+          <h3 class="font-bold text-base sm:text-lg mb-1">Minimal Pro</h3>
+          <p class="text-xs text-[var(--muted)] mb-4">FPS, Coordinates, Ping, Armor. Минимализм.</p>
           <div class="flex items-center justify-between pt-3 border-t border-white/5">
-            <span class="font-mono text-xs text-[var(--muted)]">6 модулей · 0.8 MB</span>
+            <span class="font-mono text-[10px] sm:text-xs text-[var(--muted)]">6 модулей · 0.8 MB</span>
             <span class="text-xs text-[var(--accent-bright)] font-mono">Входит в клиент</span>
           </div>
         </div>
@@ -749,22 +716,16 @@
           <div class="mini-hud" style="width: 80%; padding: 14px;">
             <div class="coords">
               <div><span class="label">X</span> <span class="val">-1248</span> &nbsp; <span class="label">Y</span> <span class="val">71</span> &nbsp; <span class="label">Z</span> <span class="val">4521</span></div>
-              <div style="margin-top: 6px;"><span class="label">BIOME</span> <span class="val">Plains</span> &nbsp; <span class="label">TIME</span> <span class="val">06:42</span></div>
-              <div style="margin-top: 10px; display: flex; justify-content: center; gap: 6px;">
-                <div style="width: 32px; height: 32px; background: rgba(255,45,146,0.15); border: 1px solid rgba(255,45,146,0.3); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: var(--accent-bright);"><i class="fas fa-shield-alt" style="font-size: 11px;"></i></div>
-                <div style="width: 32px; height: 32px; background: rgba(255,45,146,0.15); border: 1px solid rgba(255,45,146,0.3); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: var(--accent-bright);"><i class="fas fa-shield-alt" style="font-size: 11px;"></i></div>
-                <div style="width: 32px; height: 32px; background: rgba(255,45,146,0.15); border: 1px solid rgba(255,45,146,0.3); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: var(--accent-bright);"><i class="fas fa-shield-alt" style="font-size: 11px;"></i></div>
-                <div style="width: 32px; height: 32px; background: rgba(255,45,146,0.15); border: 1px solid rgba(255,45,146,0.3); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: var(--accent-bright);"><i class="fas fa-shoe-prints" style="font-size: 11px;"></i></div>
-              </div>
+              <div style="margin-top: 6px;"><span class="label">BIOME</span> <span class="val">Plains</span></div>
             </div>
           </div>
           <span class="badge badge-new">NEW</span>
         </div>
-        <div class="p-6">
-          <h3 class="font-bold text-lg mb-1">Survival Full</h3>
-          <p class="text-xs text-[var(--muted)] mb-4">Coords, Biome, Armor, Potions, Saturation. Полный набор для выживания.</p>
+        <div class="p-5 sm:p-6">
+          <h3 class="font-bold text-base sm:text-lg mb-1">Survival Full</h3>
+          <p class="text-xs text-[var(--muted)] mb-4">Coords, Biome, Armor, Potions, Saturation.</p>
           <div class="flex items-center justify-between pt-3 border-t border-white/5">
-            <span class="font-mono text-xs text-[var(--muted)]">18 модулей · 3.4 MB</span>
+            <span class="font-mono text-[10px] sm:text-xs text-[var(--muted)]">18 модулей · 3.4 MB</span>
             <span class="text-xs text-[var(--accent-bright)] font-mono">Входит в клиент</span>
           </div>
         </div>
@@ -774,55 +735,55 @@
 </section>
 
 <!-- INSTALL -->
-<section id="install" class="relative py-24 lg:py-32">
-  <div class="max-w-7xl mx-auto px-6">
-    <div class="text-center mb-16 reveal">
+<section id="install" class="relative py-16 sm:py-24 lg:py-32">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6">
+    <div class="text-center mb-10 sm:mb-16 reveal">
       <div class="text-xs font-mono text-[var(--accent-bright)] mb-3 tracking-widest">// УСТАНОВКА</div>
-      <h2 class="font-bold text-4xl md:text-5xl lg:text-6xl leading-[0.95] mb-5">
+      <h2 class="font-bold text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-[0.95] mb-5">
         3 шага до<br><span class="text-gradient">нового интерфейса</span>
       </h2>
     </div>
 
-    <div class="grid md:grid-cols-3 gap-6">
-      <div class="glass-card tilt-card p-8 relative reveal">
-        <div class="absolute top-8 right-8 font-bold text-5xl text-white/5 leading-none">01</div>
-        <div class="w-14 h-14 rounded-2xl flex items-center justify-center mb-6" style="background: rgba(255, 45, 146, 0.1); border: 1px solid rgba(255, 45, 146, 0.2);">
-          <i class="fas fa-download text-[var(--accent-bright)] text-2xl"></i>
+    <div class="grid md:grid-cols-3 gap-4 sm:gap-6">
+      <div class="glass-card tilt-card p-6 sm:p-8 relative reveal">
+        <div class="absolute top-6 right-6 sm:top-8 sm:right-8 font-bold text-4xl sm:text-5xl text-white/5 leading-none">01</div>
+        <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl flex items-center justify-center mb-5 sm:mb-6" style="background: rgba(255, 45, 146, 0.1); border: 1px solid rgba(255, 45, 146, 0.2);">
+          <i class="fas fa-download text-[var(--accent-bright)] text-xl sm:text-2xl"></i>
         </div>
-        <h3 class="font-bold text-xl mb-3">Скачай VINTAGE</h3>
-        <p class="text-sm text-[var(--muted)] leading-relaxed">Загрузи клиент с этой страницы. Весит 12 МБ, работает без установки — просто .jar файл для 1.21.11.</p>
+        <h3 class="font-bold text-lg sm:text-xl mb-3">Скачай VINTAGE</h3>
+        <p class="text-sm text-[var(--muted)] leading-relaxed">Загрузи клиент. Весит 12 МБ, работает без установки — просто .jar файл для 1.21.11.</p>
       </div>
 
-      <div class="glass-card tilt-card p-8 relative reveal reveal-delay-1">
-        <div class="absolute top-8 right-8 font-bold text-5xl text-white/5 leading-none">02</div>
-        <div class="w-14 h-14 rounded-2xl flex items-center justify-center mb-6" style="background: rgba(255, 45, 146, 0.1); border: 1px solid rgba(255, 45, 146, 0.2);">
-          <i class="fas fa-cube text-[var(--accent-bright)] text-2xl"></i>
+      <div class="glass-card tilt-card p-6 sm:p-8 relative reveal reveal-delay-1">
+        <div class="absolute top-6 right-6 sm:top-8 sm:right-8 font-bold text-4xl sm:text-5xl text-white/5 leading-none">02</div>
+        <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl flex items-center justify-center mb-5 sm:mb-6" style="background: rgba(255, 45, 146, 0.1); border: 1px solid rgba(255, 45, 146, 0.2);">
+          <i class="fas fa-cube text-[var(--accent-bright)] text-xl sm:text-2xl"></i>
         </div>
-        <h3 class="font-bold text-xl mb-3">Запусти с Java</h3>
-        <p class="text-sm text-[var(--muted)] leading-relaxed">Двойной клик по файлу. VINTAGE сам найдёт твою версию Minecraft 1.21.11 и предложит загрузить нужную.</p>
+        <h3 class="font-bold text-lg sm:text-xl mb-3">Запусти с Java</h3>
+        <p class="text-sm text-[var(--muted)] leading-relaxed">Двойной клик по файлу. VINTAGE сам найдёт твою версию Minecraft 1.21.11.</p>
       </div>
 
-      <div class="glass-card tilt-card p-8 relative reveal reveal-delay-2">
-        <div class="absolute top-8 right-8 font-bold text-5xl text-white/5 leading-none">03</div>
-        <div class="w-14 h-14 rounded-2xl flex items-center justify-center mb-6" style="background: rgba(255, 45, 146, 0.1); border: 1px solid rgba(255, 45, 146, 0.2);">
-          <i class="fas fa-sliders text-[var(--accent-bright)] text-2xl"></i>
+      <div class="glass-card tilt-card p-6 sm:p-8 relative reveal reveal-delay-2">
+        <div class="absolute top-6 right-6 sm:top-8 sm:right-8 font-bold text-4xl sm:text-5xl text-white/5 leading-none">03</div>
+        <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl flex items-center justify-center mb-5 sm:mb-6" style="background: rgba(255, 45, 146, 0.1); border: 1px solid rgba(255, 45, 146, 0.2);">
+          <i class="fas fa-sliders text-[var(--accent-bright)] text-xl sm:text-2xl"></i>
         </div>
-        <h3 class="font-bold text-xl mb-3">Настрой и играй</h3>
-        <p class="text-sm text-[var(--muted)] leading-relaxed">Открой меню (Right Shift), включи нужные модули, выбери пресет. Готово — заходи на сервер.</p>
+        <h3 class="font-bold text-lg sm:text-xl mb-3">Настрой и играй</h3>
+        <p class="text-sm text-[var(--muted)] leading-relaxed">Открой меню (Right Shift), включи нужные модули, выбери пресет.</p>
       </div>
     </div>
 
-    <div class="mt-12 glass-card tilt-card p-8 flex flex-wrap items-center justify-between gap-6 reveal" style="border-color: rgba(255, 45, 146, 0.15);">
-      <div class="flex items-center gap-5">
-        <div class="w-14 h-14 rounded-2xl flex items-center justify-center flex-shrink-0" style="background: linear-gradient(135deg, var(--accent), var(--magenta)); box-shadow: inset 0 1px 1px rgba(255,255,255,0.2);">
-          <i class="fas fa-bolt text-white text-2xl"></i>
+    <div class="mt-8 sm:mt-12 glass-card tilt-card p-6 sm:p-8 flex flex-wrap items-center justify-between gap-6 reveal" style="border-color: rgba(255, 45, 146, 0.15);">
+      <div class="flex items-center gap-4 sm:gap-5">
+        <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl flex items-center justify-center flex-shrink-0" style="background: linear-gradient(135deg, var(--accent), var(--magenta)); box-shadow: inset 0 1px 1px rgba(255,255,255,0.2);">
+          <i class="fas fa-bolt text-white text-xl sm:text-2xl"></i>
         </div>
         <div>
-          <h3 class="font-bold text-lg mb-1">VINTAGE v4.0 — Liquid Update</h3>
-          <p class="text-sm text-[var(--muted)]">12.4 MB · Windows / macOS / Linux · Java 8+ · MC 1.21.11</p>
+          <h3 class="font-bold text-base sm:text-lg mb-1">VINTAGE v4.0</h3>
+          <p class="text-xs sm:text-sm text-[var(--muted)]">12.4 MB · Win/Mac/Linux · Java 8+ · MC 1.21.11</p>
         </div>
       </div>
-      <button class="btn-primary" onclick="showToast('VINTAGE v4.0 (MC 1.21.11) — загрузка началась')">
+      <button class="btn-primary w-full sm:w-auto justify-center" onclick="showToast('VINTAGE v4.0 (MC 1.21.11) — загрузка началась')">
         <i class="fas fa-download"></i>
         Скачать клиент
       </button>
@@ -831,29 +792,29 @@
 </section>
 
 <!-- FAQ -->
-<section id="faq" class="relative py-24 lg:py-32">
-  <div class="max-w-3xl mx-auto px-6">
-    <div class="text-center mb-14 reveal">
+<section id="faq" class="relative py-16 sm:py-24 lg:py-32">
+  <div class="max-w-3xl mx-auto px-4 sm:px-6">
+    <div class="text-center mb-10 sm:mb-14 reveal">
       <div class="text-xs font-mono text-[var(--accent-bright)] mb-3 tracking-widest">// ВОПРОСЫ</div>
-      <h2 class="font-bold text-4xl md:text-5xl lg:text-6xl leading-[0.95]">
+      <h2 class="font-bold text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-[0.95]">
         Частые<br><span class="text-gradient">вопросы</span>
       </h2>
     </div>
-    <div class="space-y-4" id="faqList"></div>
+    <div class="space-y-3 sm:space-y-4" id="faqList"></div>
   </div>
 </section>
 
 <!-- CTA -->
-<section class="relative py-24 lg:py-32 overflow-hidden">
-  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full opacity-20" style="background: radial-gradient(circle, var(--accent-glow), transparent 60%); filter: blur(80px);"></div>
+<section class="relative py-16 sm:py-24 lg:py-32 overflow-hidden">
+  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] sm:w-[800px] h-[600px] sm:h-[800px] rounded-full opacity-20" style="background: radial-gradient(circle, var(--accent-glow), transparent 60%); filter: blur(80px);"></div>
 
-  <div class="relative max-w-4xl mx-auto px-6 text-center reveal">
+  <div class="relative max-w-4xl mx-auto px-4 sm:px-6 text-center reveal">
     <div class="text-xs font-mono text-[var(--accent-bright)] mb-4 tracking-widest">// ГОТОВ?</div>
-    <h2 class="font-bold text-4xl md:text-5xl lg:text-7xl leading-[0.95] mb-6">
+    <h2 class="font-bold text-3xl sm:text-4xl md:text-5xl lg:text-7xl leading-[0.95] mb-6">
       Сделай свой интерфейс<br><span class="text-gradient">живым</span>
     </h2>
-    <p class="text-[var(--muted)] text-lg mb-10 max-w-2xl mx-auto">870 000+ игроков уже играют с VINTAGE. Присоединяйся — это бесплатно.</p>
-    <div class="flex flex-wrap gap-4 justify-center">
+    <p class="text-[var(--muted)] text-base sm:text-lg mb-10 max-w-2xl mx-auto">870 000+ игроков уже играют с VINTAGE. Присоединяйся — это бесплатно.</p>
+    <div class="flex flex-wrap gap-3 sm:gap-4 justify-center">
       <button class="btn-primary" onclick="showToast('Загрузка VINTAGE для 1.21.11 началась')">
         <i class="fas fa-download"></i>
         Скачать бесплатно
@@ -867,17 +828,17 @@
 </section>
 
 <!-- Footer -->
-<footer class="relative py-14 border-t border-white/5">
-  <div class="max-w-7xl mx-auto px-6">
-    <div class="grid md:grid-cols-5 gap-10 mb-12">
-      <div class="md:col-span-2">
+<footer class="relative py-12 sm:py-14 border-t border-white/5">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6">
+    <div class="grid grid-cols-2 md:grid-cols-5 gap-8 md:gap-10 mb-10 sm:mb-12">
+      <div class="col-span-2 md:col-span-2">
         <div class="flex items-center gap-3 mb-4">
           <div class="logo-box" style="width: 40px; height: 40px;">
             <span class="logo-v" style="font-size: 22px;">V</span>
           </div>
-          <span class="font-bold text-lg">VINTAGE</span>
+          <span class="font-bold text-base sm:text-lg">VINTAGE</span>
         </div>
-        <p class="text-sm text-[var(--muted)] max-w-sm leading-relaxed mb-5">Студия визуалов для Minecraft 1.21.11. Чистая косметика без читов. Совместим с Hypixel, Mineplex, CubeCraft и любыми серверами.</p>
+        <p class="text-xs sm:text-sm text-[var(--muted)] max-w-sm leading-relaxed mb-5">Студия визуалов для Minecraft 1.21.11. Чистая косметика без читов. Совместим с любыми серверами.</p>
         <div class="flex gap-3">
           <a href="https://discord.gg/AqVChZKu8V" target="_blank" class="w-10 h-10 liquid-glass rounded-xl flex items-center justify-center hover:text-[var(--accent-bright)] transition"><i class="fab fa-discord"></i></a>
           <a href="https://t.me/vintageCS2" target="_blank" class="w-10 h-10 liquid-glass rounded-xl flex items-center justify-center hover:text-[var(--accent-bright)] transition"><i class="fab fa-telegram"></i></a>
@@ -886,8 +847,8 @@
         </div>
       </div>
       <div>
-        <h4 class="font-bold text-sm mb-4 tracking-wider">МОДУЛИ</h4>
-        <ul class="space-y-2 text-sm text-[var(--muted)]">
+        <h4 class="font-bold text-xs sm:text-sm mb-4 tracking-wider">МОДУЛИ</h4>
+        <ul class="space-y-2 text-xs sm:text-sm text-[var(--muted)]">
           <li><a href="#categories" class="hover:text-white transition">Combat HUD</a></li>
           <li><a href="#categories" class="hover:text-white transition">Input Display</a></li>
           <li><a href="#categories" class="hover:text-white transition">Status HUD</a></li>
@@ -895,8 +856,8 @@
         </ul>
       </div>
       <div>
-        <h4 class="font-bold text-sm mb-4 tracking-wider">ПОМОЩЬ</h4>
-        <ul class="space-y-2 text-sm text-[var(--muted)]">
+        <h4 class="font-bold text-xs sm:text-sm mb-4 tracking-wider">ПОМОЩЬ</h4>
+        <ul class="space-y-2 text-xs sm:text-sm text-[var(--muted)]">
           <li><a href="#install" class="hover:text-white transition">Установка</a></li>
           <li><a href="#faq" class="hover:text-white transition">FAQ</a></li>
           <li><a href="#" class="hover:text-white transition">Гайды</a></li>
@@ -904,8 +865,8 @@
         </ul>
       </div>
       <div>
-        <h4 class="font-bold text-sm mb-4 tracking-wider">ПРОЕКТ</h4>
-        <ul class="space-y-2 text-sm text-[var(--muted)]">
+        <h4 class="font-bold text-xs sm:text-sm mb-4 tracking-wider">ПРОЕКТ</h4>
+        <ul class="space-y-2 text-xs sm:text-sm text-[var(--muted)]">
           <li><a href="#" class="hover:text-white transition">О нас</a></li>
           <li><a href="#" class="hover:text-white transition">Команда</a></li>
           <li><a href="#" class="hover:text-white transition">Блог</a></li>
@@ -913,8 +874,8 @@
         </ul>
       </div>
     </div>
-    <div class="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between gap-4 text-xs text-[var(--muted)] font-mono">
-      <div>© 2024 VINTAGE Client. Не аффилирован с Mojang AB. Minecraft — торговая марка Mojang.</div>
+    <div class="pt-6 sm:pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between gap-4 text-[10px] sm:text-xs text-[var(--muted)] font-mono">
+      <div>© 2024 VINTAGE Client. Не аффилирован с Mojang AB.</div>
       <div class="flex gap-6">
         <a href="#" class="hover:text-white transition">Конфиденциальность</a>
         <a href="#" class="hover:text-white transition">Условия</a>
@@ -1025,17 +986,17 @@
         ${badgeHtml}
         <div class="absolute top-5 left-5"><span class="pack-tag">${mod.category.toUpperCase()}</span></div>
       </div>
-      <div class="p-7" style="height: 40%;">
+      <div class="p-5 sm:p-7" style="height: 40%;">
         <div class="flex items-center gap-2 mb-3">
           <span class="font-mono text-xs text-[var(--muted)]">${String(i + 1).padStart(2, '0')}</span>
           <span class="font-mono text-xs text-[var(--accent-bright)]">·</span>
           <span class="font-mono text-xs text-[var(--muted)]">MC 1.21.11</span>
         </div>
-        <h3 class="font-bold text-2xl mb-2 leading-tight">${mod.name}</h3>
-        <p class="text-sm text-[var(--muted)] mb-4 leading-relaxed">${mod.desc}</p>
+        <h3 class="font-bold text-xl sm:text-2xl mb-2 leading-tight">${mod.name}</h3>
+        <p class="text-xs sm:text-sm text-[var(--muted)] mb-4 leading-relaxed">${mod.desc}</p>
         <div class="flex items-center justify-between pt-4 border-t border-white/5">
-          <span class="font-mono text-xs text-[var(--muted)]">Входит в базовый комплект</span>
-          <span class="font-mono text-xs text-[var(--accent-bright)]">VINTAGE</span>
+          <span class="font-mono text-[10px] sm:text-xs text-[var(--muted)]">Входит в базовый комплект</span>
+          <span class="font-mono text-[10px] sm:text-xs text-[var(--accent-bright)]">VINTAGE</span>
         </div>
       </div>
     `;
@@ -1052,6 +1013,7 @@
   let targetTranslate = 0;
 
   function updateStickyScroll() {
+    if (window.innerWidth <= 768) return; // Отключаем на мобильных
     const rect = stickySection.getBoundingClientRect();
     const sectionHeight = stickySection.offsetHeight;
     const viewportHeight = window.innerHeight;
@@ -1078,17 +1040,17 @@
   }
 
   function smoothScroll() {
+    if (window.innerWidth <= 768) return; // Отключаем на мобильных
     currentTranslate += (targetTranslate - currentTranslate) * 0.18;
     hTrack.style.transform = `translateX(${currentTranslate}px)`;
     requestAnimationFrame(smoothScroll);
   }
-  smoothScroll();
-
-  window.addEventListener('scroll', () => {
-    requestAnimationFrame(updateStickyScroll);
-  }, { passive: true });
-  window.addEventListener('resize', updateStickyScroll);
-  updateStickyScroll();
+  if (window.innerWidth > 768) {
+    smoothScroll();
+    window.addEventListener('scroll', () => { requestAnimationFrame(updateStickyScroll); }, { passive: true });
+    window.addEventListener('resize', updateStickyScroll);
+    updateStickyScroll();
+  }
 
   /* ========= DRAG CAROUSEL ========= */
   const carousel = document.getElementById('carousel');
@@ -1100,7 +1062,7 @@
   modules.forEach((mod) => {
     const card = document.createElement('div');
     card.className = 'glass-card tilt-card overflow-hidden';
-    card.style.height = '440px';
+    card.style.height = '400px';
     const badgeHtml = mod.badge === 'hot' ? '<div class="badge badge-hot">HOT</div>' : mod.badge === 'new' ? '<div class="badge badge-new">NEW</div>' : '';
 
     card.innerHTML = `
@@ -1109,12 +1071,12 @@
         ${badgeHtml}
         <div class="absolute top-4 left-4"><span class="pack-tag">${mod.category.toUpperCase()}</span></div>
       </div>
-      <div class="p-6">
-        <h3 class="font-bold text-lg mb-2">${mod.name}</h3>
+      <div class="p-5 sm:p-6">
+        <h3 class="font-bold text-base sm:text-lg mb-2">${mod.name}</h3>
         <p class="text-xs text-[var(--muted)] mb-4 leading-relaxed">${mod.desc}</p>
         <div class="flex items-center justify-between pt-3 border-t border-white/5">
-          <span class="font-mono text-xs text-[var(--muted)]">MC 1.21.11</span>
-          <span class="font-mono text-xs text-[var(--accent-bright)]">Входит в клиент</span>
+          <span class="font-mono text-[10px] sm:text-xs text-[var(--muted)]">MC 1.21.11</span>
+          <span class="font-mono text-[10px] sm:text-xs text-[var(--accent-bright)]">Входит в клиент</span>
         </div>
       </div>
     `;
@@ -1211,22 +1173,15 @@
   });
 
   function scrollToCard(direction) {
-    const cardWidth = 344;
+    const cardWidth = window.innerWidth <= 768 ? 280 : 344;
     setCarouselX(currentCarouselX - direction * cardWidth * 2);
   }
   prevBtn.addEventListener('click', () => scrollToCard(-1));
   nextBtn.addEventListener('click', () => scrollToCard(1));
 
-  carousel.addEventListener('wheel', (e) => {
-    if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
-      e.preventDefault();
-      setCarouselX(currentCarouselX - e.deltaX);
-    }
-  }, { passive: false });
-
   updateCarouselProgress();
 
-  /* ========= 3D TILT EFFECT (ИСПРАВЛЕННАЯ ВЕРСИЯ БЕЗ РЕЗКИХ СКАЧКОВ) ========= */
+  /* ========= 3D TILT EFFECT (ТОЛЬКО ДЕСКТОП) ========= */
   let activeTilt = null;
 
   function resetTilt(card) {
@@ -1235,6 +1190,7 @@
   }
 
   window.addEventListener('mousemove', (e) => {
+    if (window.innerWidth <= 768) return; // Отключаем на мобильных
     if (carousel.classList.contains('dragging')) return;
     
     const card = e.target.closest('.tilt-card');
@@ -1242,7 +1198,6 @@
       if (activeTilt !== card) {
         if (activeTilt) resetTilt(activeTilt);
         activeTilt = card;
-        // Плавный вход в наклон (0.15s), чтобы не было резкого скачка
         card.style.transition = 'transform 0.15s ease-out, box-shadow 0.4s ease';
       }
       
@@ -1268,50 +1223,51 @@
     }
   });
 
-  /* ========= DRAGGABLE HERO HUD ========= */
-  document.querySelectorAll('.draggable-hud').forEach(hud => {
-    let isDraggingHud = false;
-    let offsetX, offsetY;
+  /* ========= DRAGGABLE HERO HUD (ТОЛЬКО ДЕСКТОП) ========= */
+  if (window.innerWidth > 768) {
+    document.querySelectorAll('.draggable-hud').forEach(hud => {
+      let isDraggingHud = false;
+      let offsetX, offsetY;
 
-    hud.addEventListener('mousedown', (e) => {
-      e.stopPropagation();
-      e.preventDefault();
-      isDraggingHud = true;
-      hud.style.cursor = 'grabbing';
-      hud.style.zIndex = 20;
-      
-      const rect = hud.getBoundingClientRect();
-      offsetX = e.clientX - rect.left;
-      offsetY = e.clientY - rect.top;
-      
-      hud.style.right = 'auto';
-      hud.style.bottom = 'auto';
-      hud.style.transform = 'none'; // Сброс центрирования для Keystrokes
+      hud.addEventListener('mousedown', (e) => {
+        e.stopPropagation();
+        e.preventDefault();
+        isDraggingHud = true;
+        hud.style.cursor = 'grabbing';
+        hud.style.zIndex = 20;
+        
+        const rect = hud.getBoundingClientRect();
+        offsetX = e.clientX - rect.left;
+        offsetY = e.clientY - rect.top;
+        
+        hud.style.right = 'auto';
+        hud.style.bottom = 'auto';
+        hud.style.transform = 'none';
+      });
+
+      window.addEventListener('mousemove', (e) => {
+        if (!isDraggingHud) return;
+        e.preventDefault();
+        
+        const parent = hud.parentElement.getBoundingClientRect();
+        let x = e.clientX - parent.left - offsetX;
+        let y = e.clientY - parent.top - offsetY;
+
+        x = Math.max(0, Math.min(x, parent.width - hud.offsetWidth));
+        y = Math.max(0, Math.min(y, parent.height - hud.offsetHeight));
+
+        hud.style.left = x + 'px';
+        hud.style.top = y + 'px';
+      });
+
+      window.addEventListener('mouseup', () => {
+        if (isDraggingHud) {
+          isDraggingHud = false;
+          hud.style.cursor = 'grab';
+        }
+      });
     });
-
-    window.addEventListener('mousemove', (e) => {
-      if (!isDraggingHud) return;
-      e.preventDefault();
-      
-      const parent = hud.parentElement.getBoundingClientRect();
-      let x = e.clientX - parent.left - offsetX;
-      let y = e.clientY - parent.top - offsetY;
-
-      // Ограничиваем перемещение внутри родителя
-      x = Math.max(0, Math.min(x, parent.width - hud.offsetWidth));
-      y = Math.max(0, Math.min(y, parent.height - hud.offsetHeight));
-
-      hud.style.left = x + 'px';
-      hud.style.top = y + 'px';
-    });
-
-    window.addEventListener('mouseup', () => {
-      if (isDraggingHud) {
-        isDraggingHud = false;
-        hud.style.cursor = 'grab';
-      }
-    });
-  });
+  }
 
   /* ========= COMPARE SLIDER ========= */
   const compareSlider = document.getElementById('compareSlider');
@@ -1340,7 +1296,7 @@
     isCompareDown = true;
     setComparePos(e.touches[0].clientX);
   }, { passive: true });
-  window.addEventListener('touchmove', (e) => {
+  compareSlider.addEventListener('touchmove', (e) => {
     if (isCompareDown) setComparePos(e.touches[0].clientX);
   }, { passive: true });
   window.addEventListener('touchend', () => { isCompareDown = false; });
